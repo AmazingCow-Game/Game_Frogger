@@ -1,0 +1,12 @@
+[submodule "lib/CoreCoord"]
+	path = lib/CoreCoord
+	url = http://www.github.com/AmazingCow-Game-Core/CoreCoord
+[submodule "lib/CoreRandom"]
+	path = lib/CoreRandom
+	url = http://www.github.com/AmazingCow-Game-Core/CoreRandom
+[submodule "lib/CoreClock"]
+	path = lib/CoreClock
+	url = http://www.github.com/AmazingCow-Game-Core/CoreClock
+[submodule "lib/CoreGame"]
+	path = lib/CoreGame
+	url = http://www.github.com/AmazingCow-Game-Core/CoreGame
