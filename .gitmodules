@@ -1,0 +1,3 @@
+[submodule "lib/Lore"]
+	path = lib/Lore
+	url = https://github.com/AmazingCow-Game-Framework/Lore
