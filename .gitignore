@@ -1,0 +1,3 @@
+*.o
+codeblocks/bin
+codeblocks/obj/
