@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Game_Frogger" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Game_Frogger" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Game_Frogger" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add option="`sdl-config --cflags`" />
+			<Add directory="../game/include" />
+			<Add directory="../lib/Lore" />
+			<Add directory="../lib/Lore/lib/CoreClock/include" />
+			<Add directory="../lib/Lore/lib/CoreGame/include" />
+			<Add directory="../lib/Lore/lib/CoreRandom/include" />
+		</Compiler>
+		<Linker>
+			<Add option="`sdl2-config --libs`" />
+			<Add library="SDL2_image" />
+			<Add library="SDL2_ttf" />
+			<Add library="SDL2_mixer" />
+		</Linker>
+		<Unit filename="../game/include/BonusEnemy.h" />
+		<Unit filename="../game/include/Car.h" />
+		<Unit filename="../game/include/Enemy.h" />
+		<Unit filename="../game/include/GameConstants.h" />
+		<Unit filename="../game/include/GameFrogger_Utils.h" />
+		<Unit filename="../game/include/GameObject.h" />
+		<Unit filename="../game/include/Hud.h" />
+		<Unit filename="../game/include/Player.h" />
+		<Unit filename="../game/include/SceneGame.h" />
+		<Unit filename="../game/include/SceneMenu.h" />
+		<Unit filename="../game/include/Tree.h" />
+		<Unit filename="../game/include/TurtleEnemy.h" />
+		<Unit filename="../game/src/BonusEnemy.cpp" />
+		<Unit filename="../game/src/Car.cpp" />
+		<Unit filename="../game/src/Enemy.cpp" />
+		<Unit filename="../game/src/GameObject.cpp" />
+		<Unit filename="../game/src/Hud.cpp" />
+		<Unit filename="../game/src/Player.cpp" />
+		<Unit filename="../game/src/SceneGame.cpp" />
+		<Unit filename="../game/src/SceneMenu.cpp" />
+		<Unit filename="../game/src/Tree.cpp" />
+		<Unit filename="../game/src/main.cpp" />
+		<Unit filename="../lib/Lore/Lore.h" />
+		<Unit filename="../lib/Lore/include/AssetsManager.h" />
+		<Unit filename="../lib/Lore/include/Color.h" />
+		<Unit filename="../lib/Lore/include/ErrorControl.h" />
+		<Unit filename="../lib/Lore/include/Font.h" />
+		<Unit filename="../lib/Lore/include/GameManager.h" />
+		<Unit filename="../lib/Lore/include/GameObject.h" />
+		<Unit filename="../lib/Lore/include/IDrawable.h" />
+		<Unit filename="../lib/Lore/include/ITransformable.h" />
+		<Unit filename="../lib/Lore/include/IUpdatable.h" />
+		<Unit filename="../lib/Lore/include/InputManager.h" />
+		<Unit filename="../lib/Lore/include/Lore_Utils.h" />
+		<Unit filename="../lib/Lore/include/MathHelper.h" />
+		<Unit filename="../lib/Lore/include/Rectangle.h" />
+		<Unit filename="../lib/Lore/include/SDLHelpers.h" />
+		<Unit filename="../lib/Lore/include/Scene.h" />
+		<Unit filename="../lib/Lore/include/SoundManager.h" />
+		<Unit filename="../lib/Lore/include/Sprite.h" />
+		<Unit filename="../lib/Lore/include/Text.h" />
+		<Unit filename="../lib/Lore/include/Texture.h" />
+		<Unit filename="../lib/Lore/include/Vector2.h" />
+		<Unit filename="../lib/Lore/include/WindowManager.h" />
+		<Unit filename="../lib/Lore/lib/CoreClock/include/Clock.h" />
+		<Unit filename="../lib/Lore/lib/CoreClock/include/CoreClock.h" />
+		<Unit filename="../lib/Lore/lib/CoreClock/include/CoreClock_Utils.h" />
+		<Unit filename="../lib/Lore/lib/CoreClock/src/Clock.cpp" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/CoreGame.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/CoreGame_Macros.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/CoreGame_Utils.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Log.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_Assert.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_Callbacks.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_Disallow.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_OnlyInDebug.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_Singleton.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/Status.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/include/StringUtils.h" />
+		<Unit filename="../lib/Lore/lib/CoreGame/src/GameCore_Macros.cpp" />
+		<Unit filename="../lib/Lore/lib/CoreGame/src/Log.cpp" />
+		<Unit filename="../lib/Lore/lib/CoreGame/src/Status.cpp" />
+		<Unit filename="../lib/Lore/lib/CoreGame/src/StringUtils.cpp" />
+		<Unit filename="../lib/Lore/lib/CoreRandom/include/CoreRandom.h" />
+		<Unit filename="../lib/Lore/lib/CoreRandom/include/CoreRandom_Utils.h" />
+		<Unit filename="../lib/Lore/lib/CoreRandom/include/Random.h" />
+		<Unit filename="../lib/Lore/lib/CoreRandom/src/Random.cpp" />
+		<Unit filename="../lib/Lore/src/AssetsManager.cpp" />
+		<Unit filename="../lib/Lore/src/Color.cpp" />
+		<Unit filename="../lib/Lore/src/ErrorControl.cpp" />
+		<Unit filename="../lib/Lore/src/Font.cpp" />
+		<Unit filename="../lib/Lore/src/GameManager.cpp" />
+		<Unit filename="../lib/Lore/src/GameObject.cpp" />
+		<Unit filename="../lib/Lore/src/IDrawable.cpp" />
+		<Unit filename="../lib/Lore/src/ITransformable.cpp" />
+		<Unit filename="../lib/Lore/src/InputManager.cpp" />
+		<Unit filename="../lib/Lore/src/MathHelper.cpp" />
+		<Unit filename="../lib/Lore/src/Rectangle.cpp" />
+		<Unit filename="../lib/Lore/src/SDLHelpers.cpp" />
+		<Unit filename="../lib/Lore/src/SoundManager.cpp" />
+		<Unit filename="../lib/Lore/src/Sprite.cpp" />
+		<Unit filename="../lib/Lore/src/Text.cpp" />
+		<Unit filename="../lib/Lore/src/Texture.cpp" />
+		<Unit filename="../lib/Lore/src/Vector2.cpp" />
+		<Unit filename="../lib/Lore/src/WindowManager.cpp" />
+		<Unit filename="../lib/Lore/src/private/include/Log.h" />
+		<Unit filename="../lib/Lore/src/private/include/Lore_Private_Utils.h" />
+		<Unit filename="../lib/Lore/src/private/src/Log.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

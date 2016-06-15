@@ -1,0 +1,669 @@
+# depslib dependency file v1.0
+1463167137 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreClock/src/Clock.cpp
+	"../include/Clock.h"
+
+1463167140 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreClock/include/Clock.h
+	<functional>
+	"CoreClock_Utils.h"
+
+1463043976 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreClock/include/CoreClock_Utils.h
+
+1463043956 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreCoord/src/Coord.cpp
+	"../include/Coord.h"
+
+1463043956 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreCoord/include/Coord.h
+	<ostream>
+	<vector>
+	"CoreCoord_Utils.h"
+
+1463043956 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreCoord/include/CoreCoord_Utils.h
+
+1463045831 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/src/GameCore_Macros.cpp
+	"../include/CoreGame_Macros.h"
+	<cstdarg>
+	<cstdio>
+	<cstdlib>
+
+1463046047 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/CoreGame_Macros.h
+	"./Macros/CoreGame_Assert.h"
+	"./Macros/CoreGame_Singleton.h"
+	"./Macros/CoreGame_Disallow.h"
+
+1463046512 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/Macros/CoreGame_Assert.h
+
+1463047313 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/Macros/CoreGame_Singleton.h
+
+1463047506 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/Macros/CoreGame_Disallow.h
+
+1463045831 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/src/Status.cpp
+	"../include/Status.h"
+
+1463046512 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/Status.h
+	<ostream>
+	"CoreGame_Utils.h"
+
+1463094488 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/CoreGame_Utils.h
+
+1463050184 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreRandom/src/Random.cpp
+	"../include/Random.h"
+	<cstdlib>
+	<limits>
+
+1463050076 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreRandom/include/Random.h
+	<random>
+	"CoreRandom_Utils.h"
+
+1463043965 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreRandom/include/CoreRandom_Utils.h
+
+1463067106 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/AssetsManager.cpp
+	"AssetsManager.h"
+	"WindowManager.h"
+
+1463057922 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//AssetsManager.h
+	<string>
+	<unordered_map>
+	"GameCommon.h"
+
+1463150804 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//GameCommon.h
+	<memory>
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"CoreGame.h"
+	"CoreClock.h"
+	"CoreCoord.h"
+	"CoreRandom.h"
+	"GameFrogger_Utils.h"
+	"GameCommon.h"
+
+1463045831 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreGame/include/CoreGame.h
+	"CoreGame_Macros.h"
+	"CoreGame_Utils.h"
+	"Status.h"
+
+1463043976 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreClock/include/CoreClock.h
+	"Clock.h"
+	"CoreClock_Utils.h"
+
+1463043956 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreCoord/include/CoreCoord.h
+	"Coord.h"
+	"CoreCoord_Utils.h"
+
+1463043965 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/CoreRandom/include/CoreRandom.h
+	"CoreRandom_Utils.h"
+	"Random.h"
+
+1463149956 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//GameFrogger_Utils.h
+
+1463062116 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/GameManager.cpp
+	"GameManager.h"
+	"WindowManager.h"
+
+1463061416 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//GameManager.h
+	"GameCommon.h"
+	"Scene.h"
+
+1463061636 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/main.cpp
+	"GameCommon.h"
+	"WindowManager.h"
+	"SoundManager.h"
+	"GameManager.h"
+	"AssetsManager.h"
+	"SceneGame.h"
+
+1463077449 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//WindowManager.h
+	"GameCommon.h"
+
+1463047630 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//SoundManager.h
+	<map>
+	<string>
+	"GameCommon.h"
+
+1463046947 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/SoundManager.cpp
+	"SoundManager.h"
+
+1463077462 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/WindowManager.cpp
+	"WindowManager.h"
+
+1463077192 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//Sprite.h
+	<string>
+	"GameCommon.h"
+
+1463078381 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/Sprite.cpp
+	"Sprite.h"
+	"AssetsManager.h"
+	"WindowManager.h"
+
+1463061999 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//Scene.h
+	"GameCommon.h"
+
+1463149505 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//SceneGame.h
+	<vector>
+	"GameCommon.h"
+	"Sprite.h"
+	"Scene.h"
+	"Car.h"
+	"Player.h"
+
+1463149558 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/SceneGame.cpp
+	"SceneGame.h"
+
+1463078640 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/Car.cpp
+	"Car.h"
+
+1463150257 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//Car.h
+	"GameCommon.h"
+	"Enemy.h"
+
+1463150234 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//Enemy.h
+	"GameCommon.h"
+	"GameObject.h"
+
+1463150479 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/Enemy.cpp
+	"Enemy.h"
+
+1463150341 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//Player.h
+	"GameCommon.h"
+	"GameObject.h"
+
+1463151056 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//GameHelpers.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"GameFrogger_Utils.h"
+
+1463150417 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/include//GameObject.h
+	"GameCommon.h"
+	"Sprite.h"
+
+1463150492 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/GameObject.cpp
+	"GameObject.h"
+
+1463150360 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/Player.cpp
+	"Player.h"
+
+1463150625 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/src/GameHelpers.cpp
+	"GameHelpers.h"
+
+1463442186 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/AssetsManager.cpp
+	"AssetsManager.h"
+	"WindowManager.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/AssetsManager.h
+	<string>
+	<map>
+	<utility>
+	"GameCommon.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameCommon.h
+	<memory>
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	"CoreGame.h"
+	"CoreClock.h"
+	"CoreCoord.h"
+	"CoreRandom.h"
+	"GameFrogger_Utils.h"
+	"GameHelpers.h"
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameFrogger_Utils.h
+	"Lore.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameHelpers.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	"GameFrogger_Utils.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/WindowManager.h
+	"GameCommon.h"
+
+1465942506 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Car.cpp
+	"Car.h"
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Car.h
+	"GameFrogger_Utils.h"
+	"Enemy.h"
+
+1465944215 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Enemy.h
+	"GameFrogger_Utils.h"
+	"GameObject.h"
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameObject.h
+	"GameFrogger_Utils.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Sprite.h
+	<string>
+	"GameCommon.h"
+
+1465941393 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Enemy.cpp
+	"Enemy.h"
+
+1463413799 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/GameHelpers.cpp
+	"GameHelpers.h"
+	"WindowManager.h"
+
+1463169411 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/GameManager.cpp
+	"GameManager.h"
+	"WindowManager.h"
+	"InputManager.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameManager.h
+	"GameCommon.h"
+	"Scene.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Scene.h
+	"GameCommon.h"
+
+1465915778 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/GameObject.cpp
+	"GameObject.h"
+
+1465906385 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/main.cpp
+	"GameFrogger_Utils.h"
+	"SceneMenu.h"
+	"SceneGame.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/SoundManager.h
+	<map>
+	<string>
+	"GameCommon.h"
+
+1465964078 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/SceneGame.h
+	<vector>
+	"GameFrogger_Utils.h"
+	"BonusEnemy.h"
+	"Car.h"
+	"Tree.h"
+	"Hud.h"
+	"Player.h"
+
+1465957267 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Player.h
+	<functional>
+	"GameFrogger_Utils.h"
+	"GameObject.h"
+
+1465965932 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/SceneGame.cpp
+	"SceneGame.h"
+	"GameConstants.h"
+	"SceneMenu.h"
+
+1463046947 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/SoundManager.cpp
+	"SoundManager.h"
+
+1463425068 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Sprite.cpp
+	"Sprite.h"
+	"AssetsManager.h"
+	"WindowManager.h"
+
+1463077462 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/WindowManager.cpp
+	"WindowManager.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/InputManager.h
+	"GameCommon.h"
+	"Scene.h"
+
+1463156465 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/InputManager.cpp
+	"InputManager.h"
+	<cstring>
+
+1465966104 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Player.cpp
+	"Player.h"
+
+1465957992 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/BonusEnemy.h
+	"GameFrogger_Utils.h"
+	"Enemy.h"
+
+1465966044 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/BonusEnemy.cpp
+	"BonusEnemy.h"
+
+1465906906 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Hud.cpp
+	"Hud.h"
+	"GameConstants.h"
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Hud.h
+	"GameFrogger_Utils.h"
+
+1463430638 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Text.h
+	<string>
+	"GameCommon.h"
+
+1463442129 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Text.cpp
+	"Text.h"
+	<cstdarg>
+	"AssetsManager.h"
+	"WindowManager.h"
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/SceneMenu.h
+	<vector>
+	"GameFrogger_Utils.h"
+	"Player.h"
+
+1465964753 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/SceneMenu.cpp
+	"SceneMenu.h"
+	"GameConstants.h"
+	"SceneGame.h"
+
+1465944215 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/SceneGame_Constants.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/CoreGame.h
+	"CoreGame_Macros.h"
+	"CoreGame_Utils.h"
+	"Log.h"
+	"Status.h"
+	"StringUtils.h"
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/CoreGame_Macros.h
+	"./Macros/CoreGame_Assert.h"
+	"./Macros/CoreGame_Callbacks.h"
+	"./Macros/CoreGame_Disallow.h"
+	"./Macros/CoreGame_Singleton.h"
+	"./Macros/CoreGame_OnlyInDebug.h"
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Macros/CoreGame_Assert.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Macros/CoreGame_Callbacks.h
+	<functional>
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Macros/CoreGame_Disallow.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Macros/CoreGame_Singleton.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Macros/CoreGame_OnlyInDebug.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/CoreGame_Utils.h
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Log.h
+	<cstdarg>
+	<string>
+	<fstream>
+	"CoreGame_Utils.h"
+	"CoreGame_Macros.h"
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/Status.h
+	<ostream>
+	"CoreGame_Utils.h"
+
+1465764503 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/include/StringUtils.h
+	<string>
+	<sstream>
+	<cstdio>
+	<cstdarg>
+	"CoreGame_Utils.h"
+
+1465764501 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreClock/include/CoreClock.h
+	"Clock.h"
+	"CoreClock_Utils.h"
+
+1465764501 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreClock/include/Clock.h
+	<functional>
+	"CoreClock_Utils.h"
+
+1465764501 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreClock/include/CoreClock_Utils.h
+
+1465764506 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreRandom/include/CoreRandom.h
+	"CoreRandom_Utils.h"
+	"Random.h"
+
+1465764506 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreRandom/include/CoreRandom_Utils.h
+
+1465764506 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreRandom/include/Random.h
+	<random>
+	"CoreRandom_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Sprite.h
+	<string>
+	"Lore_Utils.h"
+	"Color.h"
+	"IDrawable.h"
+	"ITransformable.h"
+	"Rectangle.h"
+	"Texture.h"
+
+1465842575 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Lore_Utils.h
+	<memory>
+	<utility>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"CoreGame.h"
+	"CoreRandom.h"
+	"CoreClock.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Color.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/IDrawable.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/ITransformable.h
+	"Lore_Utils.h"
+	"Rectangle.h"
+	"Vector2.h"
+
+1465950056 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Rectangle.h
+	"Lore_Utils.h"
+	"Vector2.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Vector2.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Texture.h
+	<string>
+	"Lore_Utils.h"
+	"Color.h"
+	"Rectangle.h"
+	"Vector2.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/GameManager.h
+	"Lore_Utils.h"
+	"Scene.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Scene.h
+	"Lore_Utils.h"
+
+1465840736 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/WindowManager.h
+	"Lore_Utils.h"
+	"Color.h"
+	"Rectangle.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Text.h
+	<string>
+	"Lore_Utils.h"
+	"Color.h"
+	"Font.h"
+	"IDrawable.h"
+	"ITransformable.h"
+	"Rectangle.h"
+	"Texture.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/Font.h
+	<string>
+	"Lore_Utils.h"
+	"Color.h"
+	"Texture.h"
+
+1465841313 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/SoundManager.h
+	<map>
+	<string>
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/AssetsManager.h
+	<map>
+	<string>
+	<utility>
+	"Lore_Utils.h"
+	"Font.h"
+	"Texture.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/InputManager.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/Lore.h
+	"./include/AssetsManager.h"
+	"./include/Color.h"
+	"./include/ErrorControl.h"
+	"./include/Font.h"
+	"./include/GameManager.h"
+	"./include/GameObject.h"
+	"./include/IDrawable.h"
+	"./include/InputManager.h"
+	"./include/ITransformable.h"
+	"./include/IUpdatable.h"
+	"./include/Lore_Utils.h"
+	"./include/MathHelper.h"
+	"./include/Rectangle.h"
+	"./include/Scene.h"
+	"./include/SDLHelpers.h"
+	"./include/SoundManager.h"
+	"./include/Sprite.h"
+	"./include/Text.h"
+	"./include/Texture.h"
+	"./include/Vector2.h"
+	"./include/WindowManager.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/ErrorControl.h
+	<string>
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/GameObject.h
+	"Lore_Utils.h"
+	"IUpdatable.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/IUpdatable.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/MathHelper.h
+	"Lore_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/include/SDLHelpers.h
+	<string>
+	"Lore_Utils.h"
+	"Color.h"
+	"Rectangle.h"
+	"Vector2.h"
+
+1465764501 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreClock/src/Clock.cpp
+	"../include/Clock.h"
+
+1465764503 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/src/GameCore_Macros.cpp
+	"../include/CoreGame_Macros.h"
+	<cstdarg>
+	<cstdio>
+	<cstdlib>
+	"../include/StringUtils.h"
+
+1465764503 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/src/Log.cpp
+	"../include/Log.h"
+	<iostream>
+	"../include/StringUtils.h"
+
+1465764503 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/src/Status.cpp
+	"../include/Status.h"
+
+1465764503 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreGame/src/StringUtils.cpp
+	"../include/StringUtils.h"
+
+1465764506 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/lib/CoreRandom/src/Random.cpp
+	"../include/Random.h"
+	<cstdlib>
+	<limits>
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/AssetsManager.cpp
+	"../include/AssetsManager.h"
+	"../include/SDLHelpers.h"
+	"../include/WindowManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Color.cpp
+	"../include/Color.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/ErrorControl.cpp
+	"../include/ErrorControl.h"
+	"./private/include/Log.h"
+	<cstdlib>
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/private/include/Log.h
+	<cstdarg>
+	<string>
+	"../../../include/Lore_Utils.h"
+	"Lore_Private_Utils.h"
+
+1465764491 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/private/include/Lore_Private_Utils.h
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Font.cpp
+	"../include/Font.h"
+	"../include/SDLHelpers.h"
+	"./private/include/Lore_Private_Utils.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/GameManager.cpp
+	"../include/GameManager.h"
+	"../include/WindowManager.h"
+	"../include/InputManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/GameObject.cpp
+	"../include/GameObject.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/IDrawable.cpp
+	"../include/IDrawable.h"
+	"../include/AssetsManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/InputManager.cpp
+	"../include/InputManager.h"
+	<cstring>
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/ITransformable.cpp
+	"../include/ITransformable.h"
+	"../include/AssetsManager.h"
+	"./private/include/Lore_Private_Utils.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/MathHelper.cpp
+	"../include/MathHelper.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/private/src/Log.cpp
+	"../include/Log.h"
+
+1465950603 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Rectangle.cpp
+	"../include/Rectangle.h"
+	"../include/SDLHelpers.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/SDLHelpers.cpp
+	"../include/SDLHelpers.h"
+	"../include/WindowManager.h"
+	<unistd.h>
+
+1465841203 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/SoundManager.cpp
+	"../include/SoundManager.h"
+	"../include/ErrorControl.h"
+	"./private/include/Lore_Private_Utils.h"
+	"./private/include/Log.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Sprite.cpp
+	"../include/Sprite.h"
+	"../include/AssetsManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Text.cpp
+	"../include/Text.h"
+	<cstdarg>
+	"../include/AssetsManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Texture.cpp
+	"../include/Texture.h"
+	"../include/SDLHelpers.h"
+	"../include/WindowManager.h"
+	"../include/AssetsManager.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/Vector2.cpp
+	"../include/Vector2.h"
+
+1465764491 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/lib/Lore/src/WindowManager.cpp
+	"../include/WindowManager.h"
+
+1465963086 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/GameConstants.h
+
+1465944214 /home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/include/Tree.h
+	"GameFrogger_Utils.h"
+	"Enemy.h"
+
+1465944617 source:/home/n2omatt/Documents/Projects/AmazingCow/AmazingCow-Game/Game_Frogger/game/src/Tree.cpp
+	"Tree.h"
+
