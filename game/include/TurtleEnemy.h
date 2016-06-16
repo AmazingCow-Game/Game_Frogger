@@ -14,6 +14,7 @@ public:
     TurtleEnemy();
     virtual ~TurtleEnemy();
 
+
     // Interaction Properties //
 public:
     virtual bool isTouchabled() const override;

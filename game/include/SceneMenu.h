@@ -12,10 +12,10 @@ NS_GAME_FROGGER_BEGIN
 
 class SceneMenu : public Lore::Scene
 {
-    // Load / Unload //
+    // CTOR / DTOR //
 public:
-    virtual void load  () override;
-    virtual void unload() override;
+    SceneMenu();
+
 
     // Update / Draw //
 public:
@@ -29,9 +29,11 @@ private:
     void initTexts  ();
     void initPlayer ();
 
+
     // Selection //
 private:
     void changeSelectionIndex(int delta);
+
 
     // iVars //
 private:

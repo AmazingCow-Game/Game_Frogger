@@ -115,9 +115,9 @@ std::string Helper_StateToStr(SceneGame::State state)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Load / Unload                                                              //
+// CTOR / DTOR                                                                //
 ////////////////////////////////////////////////////////////////////////////////
-void SceneGame::load()
+SceneGame::SceneGame()
 {
     //COWTODO: Put this in a better place.
     m_levelTime   = 360;
@@ -133,11 +133,6 @@ void SceneGame::load()
     );
 
     reset();
-}
-
-void SceneGame::unload()
-{
-
 }
 
 

@@ -29,8 +29,6 @@ public:
     // Public Methods //
 public:
     void setSpeed(const Lore::Vector2 &speed);
-
-
 };
 
 NS_GAME_FROGGER_END

@@ -10,23 +10,18 @@ USING_NS_GAME_FROGGER
 //COWTODO: Remove the magic numbers.
 //COWTODO: Add comments.
 
-////////////////////////////////////////////////////////////////////////////////
-// Load / Unload                                                              //
-////////////////////////////////////////////////////////////////////////////////
-void SceneMenu::load()
-{
 
+////////////////////////////////////////////////////////////////////////////////
+// CTOR / DTOR                                                                //
+////////////////////////////////////////////////////////////////////////////////
+SceneMenu::SceneMenu()
+{
     Lore::WindowManager::instance()->setClearColor(Lore::Color(0, 0, 72));
     m_selectionIndex = 0;
 
     initSprites();
     initTexts  ();
     initPlayer ();
-}
-
-void SceneMenu::unload()
-{
-
 }
 
 
@@ -67,6 +62,7 @@ void SceneMenu::draw()
 
     m_selectionFrog.draw();
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Inits                                                                      //

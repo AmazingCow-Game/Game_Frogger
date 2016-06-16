@@ -27,10 +27,9 @@ public:
     };
 
 
-    // Load / Unload //
+    // CTOR / DTOR //
 public:
-    virtual void load  () override;
-    virtual void unload() override;
+    SceneGame();
 
 
     // Update //
@@ -66,6 +65,7 @@ private:
     void killPlayer();
 
     void changeState(State newState);
+
 
     // Init //
 private:
