@@ -102,7 +102,7 @@ void SceneMenu::initTexts()
         Lore::Vector2::OffsetBy(winRect.getCenter(),
                                 -(m_1PlayerGameText.getBounds().getWidth() / 2),
                                 0)
-        );
+    );
     m_1PlayerGameText.setOrigin(Lore::ITransformable::OriginHelpers::TopLeft());
 
     m_2PlayersGameText.setPosition(
