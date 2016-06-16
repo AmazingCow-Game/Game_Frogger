@@ -2,8 +2,9 @@
 #include "SceneGame.h"
 //Game_Frooger
 #include "GameConstants.h"
+#include "SceneGame_Tile_Constants.h"
+#include "SceneGame_HelperFunctions.h"
 #include "SceneMenu.h"
-
 
 //Usings
 USING_NS_GAME_FROGGER
@@ -14,105 +15,6 @@ USING_NS_GAME_FROGGER
 ////////////////////////////////////////////////////////////////////////////////
 constexpr int kOneSecond = 1;
 
-constexpr int kTileSize     = 40;
-constexpr int kTilesCount_X = 13;
-constexpr int kTilesCount_Y = 14;
-//Target Row
-constexpr int kTargetRowTilesCount_X    = kTilesCount_X;
-constexpr int kTargetRowTilesCount_Y    = 1;
-constexpr int kTargetRowTiles_Initial_X = 0;
-constexpr int kTargetRowTiles_Initial_Y = 2;
-//Water
-constexpr int kWaterTilesCount_X    = kTilesCount_X;
-constexpr int kWaterTilesCount_Y    = 5;
-constexpr int kWaterTiles_Initial_X = kTargetRowTiles_Initial_X;
-constexpr int kWaterTiles_Initial_Y = kTargetRowTiles_Initial_Y + kTargetRowTilesCount_Y;
-//Safe Row
-constexpr int kSafeRowTilesCount_X    = kTilesCount_X;
-constexpr int kSafeRowTilesCount_Y    = 1;
-constexpr int kSafeRowTiles_Initial_X = kWaterTiles_Initial_X;
-constexpr int kSafeRowTiles_Initial_Y = kWaterTiles_Initial_Y + kWaterTilesCount_Y;
-//Highway
-constexpr int kHighwayTilesCount_X    = kTilesCount_X;
-constexpr int kHighwayTilesCount_Y    = 5;
-constexpr int kHighwayTiles_Initial_X = kSafeRowTiles_Initial_X;
-constexpr int kHighwayTiles_Initial_Y = kSafeRowTiles_Initial_Y + kSafeRowTilesCount_Y;
-//Start Row
-constexpr int kStartRowTilesCount_X    = kTilesCount_X;
-constexpr int kStartRowTilesCount_Y    = 1;
-constexpr int kStartRowTiles_Initial_X = kHighwayTiles_Initial_X;
-constexpr int kStartRowTiles_Initial_Y = kHighwayTiles_Initial_Y + kHighwayTilesCount_Y;
-
-
-////////////////////////////////////////////////////////////////////////////////
-// Helper Functions                                                           //
-////////////////////////////////////////////////////////////////////////////////
-Lore::Vector2 Helper_TileToVec(int x, int y)
-{
-    return Lore::Vector2(x * kTileSize, y * kTileSize);
-}
-
-bool Helper_FrogIsOnStartRow(const Player &player)
-{
-    int row = player.getPosition().y / kTileSize;
-    bool inRow = row >=  (kStartRowTiles_Initial_Y) &&
-                 row < (kStartRowTiles_Initial_Y + kStartRowTilesCount_Y);
-
-    if(inRow)
-        FROGGER_DLOG("FROG is on START Row: %d", row);
-
-    return inRow;
-}
-
-bool Helper_FrogIsOnHighwayRow(const Player &player)
-{
-    int row = player.getPosition().y / kTileSize;
-    bool inRow = row >=  (kHighwayTiles_Initial_Y) &&
-                 row < (kHighwayTiles_Initial_Y + kHighwayTilesCount_Y);
-
-    if(inRow)
-        FROGGER_DLOG("FROG is on HIGHWAY Row: %d", row);
-
-    return inRow;
-}
-
-bool Helper_FrogIsOnWaterRow(const Player &player)
-{
-    int row = player.getPosition().y / kTileSize;
-    bool inRow = row >=  (kWaterTiles_Initial_Y) &&
-                 row < (kWaterTiles_Initial_Y + kWaterTilesCount_Y);
-
-    if(inRow)
-        FROGGER_DLOG("FROG is on WATER Row: %d", row);
-
-    return inRow;
-}
-
-bool Helper_FrogIsOnTargetRow(const Player &player)
-{
-    int row = player.getPosition().y / kTileSize;
-    bool inRow = row >=  (kTargetRowTiles_Initial_Y) &&
-                 row < (kTargetRowTiles_Initial_Y + kTargetRowTilesCount_Y);
-
-    if(inRow)
-        FROGGER_DLOG("FROG is on TARGET Row: %d", row);
-
-    return inRow;
-}
-
-std::string Helper_StateToStr(SceneGame::State state)
-{
-    switch(state)
-    {
-        case SceneGame::State::Playing  : return "Playing";
-        case SceneGame::State::Paused   : return "Paused";
-        case SceneGame::State::Defeat   : return "Defeat";
-        case SceneGame::State::Victory  : return "Victory";
-        case SceneGame::State::GameOver : return "Game Over";
-    }
-
-    return ""; //Make compiler happy.
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
@@ -512,8 +414,27 @@ void SceneGame::checkCarsCollisions()
     if(!Helper_FrogIsOnHighwayRow(m_player))
         return;
 
-    //COWTODO: check collisions - Kill player
+    auto playerRect = m_player.getBoundingBox();
+    for(auto &car : m_carsVec)
+    {
+        Lore::Rectangle outRect;
+        if(car->getBoundingBox().intersectionRect(playerRect, outRect))
+        {
+            FROGGER_DLOG("Car INTERSECTION: %.2f %.2f %.2f %.2f",
+                         outRect.getX(), outRect.getY(),
+                         outRect.getWidth(), outRect.getHeight()
+            );
 
+            //COWTODO: Adjust the safe offset.
+            if(outRect.getWidth() > 15)
+            {
+                killPlayer();
+                return; //One collision per time
+            }
+
+            return; //One collision per time.
+        }
+    }//for(auto &car : m_carsVec)
 }
 
 void SceneGame::checkTreesCollisions()
