@@ -5,11 +5,15 @@
 #include <vector>
 //Game_Frogger
 #include "GameFrogger_Utils.h"
+//Enemies
 #include "BonusEnemy.h"
 #include "Car.h"
 #include "Tree.h"
-#include "Hud.h"
+#include "Turtle.h"
+//Player
 #include "Player.h"
+//Other
+#include "Hud.h"
 
 
 NS_GAME_FROGGER_BEGIN
@@ -76,6 +80,7 @@ private:
     void initTimers      ();
     void initCars        ();
     void initTrees       ();
+    void initTurtles     ();
     void initBonusEnemies();
     void initStateText   ();
     void initSounds      ();
@@ -83,6 +88,7 @@ private:
     //COWTODO: Refactor....
     void createCarHelper(int lane, int groupCount, int startX, int direction);
     void createTreeHelper(int lane, int groupCount, int startX, int direction);
+    void createTurtleHelper(int lane, int groupCount, int startX, int direction);
 
 
     // Collisions //
@@ -125,6 +131,7 @@ private:
     Lore::Rectangle                          m_waterRect;
     std::vector<std::shared_ptr<Car>>        m_carsVec;
     std::vector<std::shared_ptr<Tree>>       m_treesVec;
+    std::vector<std::shared_ptr<Turtle>>     m_turtlesVec;
     std::vector<std::shared_ptr<BonusEnemy>> m_bonusEnemiesVec;
     std::vector<Enemy *>                     m_enemiesVec;
 
