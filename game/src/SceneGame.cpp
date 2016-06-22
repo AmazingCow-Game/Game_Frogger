@@ -24,10 +24,11 @@ SceneGame::SceneGame()
     //COWTODO: Put this in a better place.
     m_levelTime   = 360;
     m_playerLives = 3;
-
+    m_level       = 1;
 
     initBackground();
     initStateText ();
+    initSounds    ();
 
     m_waterRect = Lore::Rectangle(
         Helper_TileToVec(kWaterTiles_Initial_X, kWaterTiles_Initial_Y),
@@ -35,6 +36,8 @@ SceneGame::SceneGame()
     );
 
     reset();
+
+    soundPlay_Intro();
 }
 
 
@@ -64,21 +67,28 @@ void SceneGame::updatePlaying(float dt)
         return;
     }
 
+    m_soundToPlay = "";
+
     //Movement...
-    auto moveDirection = Player::Direction::None;
+    if(m_player.isMoveAnimationDone())
+    {
+        auto moveDirection = Player::Direction::None;
 
-    if(inputMgr->isKeyClick(SDL_SCANCODE_LEFT))
-        moveDirection = Player::Direction::Left;
-    if(inputMgr->isKeyClick(SDL_SCANCODE_RIGHT))
-        moveDirection = Player::Direction::Right;
-    if(inputMgr->isKeyClick(SDL_SCANCODE_UP))
-        moveDirection = Player::Direction::Up;
-    if(inputMgr->isKeyClick(SDL_SCANCODE_DOWN))
-        moveDirection = Player::Direction::Down;
+        if(inputMgr->isKeyClick(SDL_SCANCODE_LEFT))
+            moveDirection = Player::Direction::Left;
+        else if(inputMgr->isKeyClick(SDL_SCANCODE_RIGHT))
+            moveDirection = Player::Direction::Right;
+        else if(inputMgr->isKeyClick(SDL_SCANCODE_UP))
+            moveDirection = Player::Direction::Up;
+        else if(inputMgr->isKeyClick(SDL_SCANCODE_DOWN))
+            moveDirection = Player::Direction::Down;
 
-    if(moveDirection != Player::Direction::None)
-        m_player.move(moveDirection);
-
+        if(moveDirection != Player::Direction::None)
+        {
+            m_player.move(moveDirection);
+            m_soundToPlay = kSoundName_Jump;
+        }
+    }
 
     //Timers
     m_countdownTimer.update(dt);
@@ -96,6 +106,10 @@ void SceneGame::updatePlaying(float dt)
     checkTurtlesCollisions     ();
     checkWaterCollision        ();
     checkBonusEnemiesCollisions();
+
+
+    if(!m_soundToPlay.empty())
+        Lore::SoundManager::instance()->playEffect(m_soundToPlay);
 }
 
 void SceneGame::updatePaused(float dt)
@@ -112,7 +126,15 @@ void SceneGame::updatePaused(float dt)
 
 void SceneGame::updateVictory(float dt)
 {
+     //Player
+    m_player.update(dt);
 
+    auto inputMgr = Lore::InputManager::instance();
+    if(inputMgr->isKeyClick(SDL_SCANCODE_SPACE) && m_playerDieAnimationIsDone)
+    {
+        resetNextLevel();
+        return;
+    }
 }
 
 void SceneGame::updateDefeat(float dt)
@@ -220,7 +242,8 @@ void SceneGame::reset()
 
 void SceneGame::resetSameLevel()
 {
-    m_remainingTime = m_levelTime;
+    //COWTODO: Remove magic numbers.
+    m_remainingTime = m_levelTime - (m_level * 10);
     changeState(SceneGame::State::Playing);
 
     initPlayer();
@@ -230,6 +253,7 @@ void SceneGame::resetSameLevel()
 
 void SceneGame::resetNextLevel()
 {
+    m_level++;
     reset();
 }
 
@@ -250,6 +274,19 @@ void SceneGame::changeState(State newState)
     m_state = newState;
     m_stateText.setString(Helper_StateToStr(m_state));
 }
+
+void SceneGame::checkVictory()
+{
+    for(auto &enemy : m_bonusEnemiesVec)
+    {
+        if(enemy->getType() != BonusEnemy::Type::Frog)
+            return;
+    }
+
+    changeState(SceneGame::State::Victory);
+    m_soundToPlay = kSoundName_Victory;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Init                                                                       //
@@ -286,7 +323,6 @@ void SceneGame::initPlayer()
     m_player.setDieAnimationCallback(
         COREGAME_CALLBACK_0(SceneGame::onPlayerDie, this)
     );
-
 
     m_player.reset();
 }
@@ -333,7 +369,7 @@ void SceneGame::initTrees()
     createTreeHelper(0, 1, 2, -1);
     createTreeHelper(1, 1, 2, -1);
     createTreeHelper(2, 1, 2, -1);
-    createTreeHelper(3, 1, 2, 1);
+    createTreeHelper(3, 1, 2, -1);
     createTreeHelper(4, 1, 2, -1);
 }
 
@@ -361,6 +397,18 @@ void SceneGame::initStateText()
     m_stateText.setPosition(
         Lore::WindowManager::instance()->getWindowRect().getCenter()
     );
+}
+
+void SceneGame::initSounds()
+{
+    auto soundMgr = Lore::SoundManager::instance();
+    soundMgr->loadEffect(kSoundName_MusicIntro  );
+    soundMgr->loadEffect(kSoundName_Jump        );
+    soundMgr->loadEffect(kSoundName_Victory     );
+    soundMgr->loadEffect(kSoundName_ReachTarget );
+    soundMgr->loadEffect(kSoundName_DefeatWater );
+    soundMgr->loadEffect(kSoundName_DefeatNormal);
+    soundMgr->loadEffect(kSoundName_TimeUp      );
 }
 
 
@@ -406,6 +454,7 @@ void SceneGame::createTreeHelper(int lane, int groupCount, int startX, int direc
     }
 }
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Collisions                                                                 //
 ////////////////////////////////////////////////////////////////////////////////
@@ -429,6 +478,8 @@ void SceneGame::checkCarsCollisions()
             if(outRect.getWidth() > 15)
             {
                 killPlayer();
+                m_soundToPlay = kSoundName_DefeatNormal;
+
                 return; //One collision per time
             }
 
@@ -491,13 +542,13 @@ void SceneGame::checkWaterCollision()
     }
 
     killPlayer();
+    m_soundToPlay = kSoundName_DefeatWater;
 }
 
 void SceneGame::checkBonusEnemiesCollisions()
 {
     if(!Helper_FrogIsOnTargetRow(m_player))
         return;
-
 
     auto playerRect = m_player.getBoundingBox();
 
@@ -521,12 +572,19 @@ void SceneGame::checkBonusEnemiesCollisions()
         {
             m_player.reset();
             enemy->turnToFrog();
+
+            m_soundToPlay = kSoundName_ReachTarget;
+            checkVictory();
+
             return; //One collision per time.
         }
+
         //Nops, player is mostly outside...
         else
         {
             killPlayer();
+            m_soundToPlay = kSoundName_DefeatNormal;
+
             return; //One collision per time.
         }
     }//for(auto &enemy : m_bonusEnemiesVec) ...
@@ -542,9 +600,12 @@ void SceneGame::checkBonusEnemiesCollisions()
 void SceneGame::onCountdownTimerTick()
 {
     m_hud.updateRemainingTime(--m_remainingTime);
-
     FROGGER_DLOG("SceneGame::onCountdownTimerTick - RemainingTime %d",
                  m_remainingTime);
+
+    //COWTODO: Remove magic number.
+    if(m_remainingTime == 20)
+        soundPlay_TimeUp();
 }
 
 void SceneGame::onCountdownTimerDone()
@@ -561,3 +622,20 @@ void SceneGame::onPlayerDie()
 {
     m_playerDieAnimationIsDone = true;
 }
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Sound Output                                                               //
+////////////////////////////////////////////////////////////////////////////////
+void SceneGame::soundPlay_Intro()
+{
+    auto soundMgr = Lore::SoundManager::instance();
+    soundMgr->playEffect(kSoundName_MusicIntro);
+}
+
+void SceneGame::soundPlay_TimeUp()
+{
+    auto soundMgr = Lore::SoundManager::instance();
+    soundMgr->playEffect(kSoundName_TimeUp);
+}
+

@@ -66,6 +66,7 @@ private:
 
     void changeState(State newState);
 
+    void checkVictory();
 
     // Init //
 private:
@@ -77,6 +78,7 @@ private:
     void initTrees       ();
     void initBonusEnemies();
     void initStateText   ();
+    void initSounds      ();
 
     //COWTODO: Refactor....
     void createCarHelper(int lane, int groupCount, int startX, int direction);
@@ -103,6 +105,12 @@ private:
     void onPlayerDie();
 
 
+    // Sound Playing /
+private:
+    void soundPlay_Intro ();
+    void soundPlay_TimeUp();
+
+
     // iVars //
 private:
     //Game Objects
@@ -121,9 +129,11 @@ private:
     std::vector<Enemy *>                     m_enemiesVec;
 
     //House Keeping
-    State      m_state;
-    int        m_playerLives;
-    Lore::Text m_stateText;
+    State       m_state;
+    int         m_level;
+    int         m_playerLives;
+    Lore::Text  m_stateText;
+    std::string m_soundToPlay;
 
     //Game Time
     CoreClock::Clock m_countdownTimer;
