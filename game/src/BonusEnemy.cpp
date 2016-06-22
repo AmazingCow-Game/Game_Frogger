@@ -69,16 +69,6 @@ void BonusEnemy::update(float dt)
 ////////////////////////////////////////////////////////////////////////////////
 // Public Methods                                                              //
 ////////////////////////////////////////////////////////////////////////////////
-bool BonusEnemy::isTouchabled() const
-{
-   return true;
-}
-
-bool BonusEnemy::isFatal() const
-{
-   return (m_currentType == BonusEnemy::Type::Alligator);
-}
-
 void BonusEnemy::turnToFrog()
 {
     setType(BonusEnemy::Type::Frog);

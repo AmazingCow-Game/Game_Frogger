@@ -33,9 +33,6 @@ public:
 
     // Public Methods //
 public:
-    virtual bool isTouchabled() const override;
-    virtual bool isFatal     () const override;
-
     void turnToFrog();
     Type getType() const;
 

@@ -15,12 +15,6 @@ public:
     virtual ~Enemy();
 
 
-    // Interaction Properties //
-public:
-    virtual bool isTouchabled() const;
-    virtual bool isFatal     () const;
-
-
     // Public Methods //
 public:
     void setMovementBounds(int minX, int maxX);

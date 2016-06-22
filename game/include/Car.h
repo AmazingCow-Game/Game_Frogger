@@ -20,12 +20,6 @@ public:
     virtual void update(float dt) override;
 
 
-    // Interaction Properties //
-public:
-    virtual bool isTouchabled() const override;
-    virtual bool isFatal     () const override;
-
-
     // Public Methods //
 public:
     void setSpeed(const Lore::Vector2 &speed);

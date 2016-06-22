@@ -235,6 +235,7 @@ void SceneGame::reset()
 
     initCars        ();
     initTrees       ();
+    initTurtles     ();
     initBonusEnemies();
 
     resetSameLevel();
@@ -366,11 +367,22 @@ void SceneGame::initTrees()
 {
     m_treesVec.clear();
 
-    createTreeHelper(0, 1, 2, -1);
-    createTreeHelper(1, 1, 2, -1);
-    createTreeHelper(2, 1, 2, -1);
-    createTreeHelper(3, 1, 2, -1);
-    createTreeHelper(4, 1, 2, -1);
+    // createTreeHelper(0, 1, 2, -1);
+    // createTreeHelper(1, 1, 2, -1);
+    // createTreeHelper(2, 1, 2, -1);
+    // createTreeHelper(3, 1, 2, -1);
+    // createTreeHelper(4, 1, 2, -1);
+}
+
+void SceneGame::initTurtles()
+{
+    m_turtlesVec.clear();
+
+    createTurtleHelper(0, 1, 2, -1);
+    createTurtleHelper(1, 1, 2,  1);
+    createTurtleHelper(2, 1, 2, -1);
+    createTurtleHelper(3, 1, 2,  1);
+    createTurtleHelper(4, 1, 2, -1);
 }
 
 void SceneGame::initBonusEnemies()
@@ -454,6 +466,28 @@ void SceneGame::createTreeHelper(int lane, int groupCount, int startX, int direc
     }
 }
 
+void SceneGame::createTurtleHelper(int lane, int groupCount, int startX, int direction)
+{
+    for(int i = 0; i < groupCount; ++i)
+    {
+        auto turtle = std::make_shared<Turtle>();
+
+        //COWTODO: Remove magic numbers...
+        turtle->setSpeed(Lore::Vector2(40 * direction, 0));
+        turtle->setPosition(
+                Helper_TileToVec(kWaterTiles_Initial_X + i + startX,
+                                 kWaterTiles_Initial_Y + lane)
+        );
+
+        turtle->setMovementBounds(kWaterTiles_Initial_X * kTileSize,
+                               kWaterTilesCount_X    * kTileSize);
+
+        m_turtlesVec.push_back(turtle);
+        m_enemiesVec.push_back(turtle.get());
+    }
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Collisions                                                                 //
@@ -490,16 +524,13 @@ void SceneGame::checkCarsCollisions()
 
 void SceneGame::checkTreesCollisions()
 {
-    if(!Helper_FrogIsOnWaterRow(m_player))
-    {
-        m_player.setLateralMovementSpeed(0);
-        return;
-    }
-
-
     //Assumes that player isn't colliding with any of the trees.
     m_player.setIsSafe(false);
     m_player.setLateralMovementSpeed(0);
+
+    if(!Helper_FrogIsOnWaterRow(m_player))
+        return;
+
 
     auto playerRect = m_player.getBoundingBox();
 
@@ -529,7 +560,38 @@ void SceneGame::checkTreesCollisions()
 
 void SceneGame::checkTurtlesCollisions()
 {
-    //COWTODO: Implement...
+    //Assumes that player isn't colliding with any of the turtles.
+    m_player.setIsSafe(false);
+    m_player.setLateralMovementSpeed(0);
+
+    if(!Helper_FrogIsOnWaterRow(m_player))
+        return;
+
+
+    auto playerRect = m_player.getBoundingBox();
+
+    for(auto &turtle : m_turtlesVec)
+    {
+        Lore::Rectangle outRect;
+        if(turtle->getBoundingBox().intersectionRect(playerRect, outRect))
+        {
+            FROGGER_DLOG("TURTTLE INTERSECTION: %.2f %.2f %.2f %.2f",
+                         outRect.getX(), outRect.getY(),
+                         outRect.getWidth(), outRect.getHeight()
+            );
+
+            //COWTODO: Adjust the safe offset.
+            if(outRect.getWidth() < 15 || !turtle->isAboveWater())
+                return;
+
+            //Player is colliding - Make it move with the turtle
+            //and set that is is safe :D
+            m_player.setLateralMovementSpeed(turtle->getSpeed().x);
+            m_player.setIsSafe(true);
+
+            return;
+        }
+    }//for(auto &turtle : m_turtleVec)...
 }
 
 void SceneGame::checkWaterCollision()
