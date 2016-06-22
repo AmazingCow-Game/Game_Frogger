@@ -58,6 +58,8 @@ public:
     bool isSafe() const;
     void setIsSafe(bool safe);
 
+    bool isMoveAnimationDone() const;
+
 
     // Private Methods //
 private:
@@ -83,6 +85,8 @@ private:
 
     CoreClock::Clock m_moveAnimationTimer;
     CoreClock::Clock m_dyingAnimationTimer;
+
+    bool m_isMoveAnimationDone;
 
     //Movement
     Lore::Vector2 m_initialPosition;

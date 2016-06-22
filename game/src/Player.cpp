@@ -4,6 +4,7 @@
 //Usings
 USING_NS_GAME_FROGGER
 
+
 ////////////////////////////////////////////////////////////////////////////////
 // Constants                                                                  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +13,12 @@ constexpr int kFramesCount_Dying = 3;
 constexpr int kFramesCount       = kFramesCount_Alive + kFramesCount_Dying;
 
 constexpr int kFrameIndex_InitialFrame = 0;
+
+constexpr float kMoveAnimationTimerInterval = 0.15f;
+constexpr float kDyingAnimationTimerInterval = 0.5f;
+
+constexpr int kSpeed = 40;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
@@ -23,8 +30,11 @@ Player::Player()
     initTimers();
 
     setFrameRect(kFrameIndex_InitialFrame);
-    setSpeed(Lore::Vector2(40, 40));
+    setSpeed(Lore::Vector2(kSpeed));
     setLateralMovementSpeed(0);
+
+    m_isSafe              = true;
+    m_isMoveAnimationDone = true;
 }
 
 Player::~Player()
@@ -38,10 +48,11 @@ Player::~Player()
 ////////////////////////////////////////////////////////////////////////////////
 void Player::update(float dt)
 {
+    //Timers
     m_moveAnimationTimer.update (dt);
     m_dyingAnimationTimer.update(dt);
 
-
+    //Lateral Movement
     auto targetPosition = getPosition() + (m_lateralSpeed * dt);
 
     if(canMove(targetPosition))
@@ -79,6 +90,8 @@ void Player::move(Direction dir)
 
     setFrameRect(static_cast<int>(dir) + 1);
     m_moveAnimationTimer.start();
+
+    m_isMoveAnimationDone = false;
 }
 
 void Player::kill()
@@ -100,6 +113,9 @@ void Player::reset()
     setPosition (m_initialPosition       );
     setState    (GameObject::State::Alive);
     setFrameRect(kFrameIndex_InitialFrame);
+
+    m_isSafe              = true;
+    m_isMoveAnimationDone = true;
 }
 
 
@@ -137,11 +153,16 @@ bool Player::isSafe() const
 {
     return m_isSafe;
 }
+
 void Player::setIsSafe(bool safe)
 {
     m_isSafe = safe;
 }
 
+bool Player::isMoveAnimationDone() const
+{
+    return m_isMoveAnimationDone;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private Methods                                                            //
@@ -182,7 +203,7 @@ void Player::initFrames()
 void Player::initTimers()
 {
     //Move Animation
-    m_moveAnimationTimer.setInterval   (0.1);
+    m_moveAnimationTimer.setInterval   (kMoveAnimationTimerInterval);
     m_moveAnimationTimer.setRepeatCount(1);
 
     auto moveTick = COREGAME_CALLBACK_0(Player::onMoveAnimationTimerTick, this);
@@ -191,7 +212,7 @@ void Player::initTimers()
     m_moveAnimationTimer.setTickCallback(moveTick);
 
     //Dying Animation
-    m_dyingAnimationTimer.setInterval   (0.5);
+    m_dyingAnimationTimer.setInterval   (kDyingAnimationTimerInterval);
     m_dyingAnimationTimer.setRepeatCount(kFramesCount_Dying -1); //ZERO BASED.
 
     auto dyingTick = COREGAME_CALLBACK_0(Player::onDyingAnimationTimerTick, this);
@@ -242,6 +263,7 @@ bool Player::canMove(const Lore::Vector2 &targetPos) const
 void Player::onMoveAnimationTimerTick()
 {
     setFrameRect(static_cast<int>(m_currentDirection));
+    m_isMoveAnimationDone = true;
 }
 
 
