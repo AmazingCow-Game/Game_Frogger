@@ -4,20 +4,17 @@
 //Usings
 USING_NS_GAME_FROGGER
 
-////////////////////////////////////////////////////////////////////////////////
-// Constants                                                                  //
-////////////////////////////////////////////////////////////////////////////////
-constexpr int kTreesFramesCount = 4;
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
 ////////////////////////////////////////////////////////////////////////////////
-Tree::Tree()
+Tree::Tree(int type)
 {
     //Init the Sprite.
     auto &sprite = getSprite();
-    sprite.loadTexture("tree_3.png");
+    sprite.loadTexture(
+        CoreGame::StringUtils::format("Images/tree_%d.png", type)
+    );
 }
 
 Tree::~Tree()

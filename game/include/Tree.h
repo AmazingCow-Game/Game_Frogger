@@ -11,7 +11,7 @@ class Tree : public Enemy
 {
     // CTOR / DTOR //
 public:
-    Tree();
+    Tree(int type);
     virtual ~Tree();
 
 

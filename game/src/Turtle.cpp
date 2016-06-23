@@ -16,13 +16,13 @@ constexpr std::array<int, 6> kAnimationIndexes = {0, 1, 2, 3, 2, 1};
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
 ////////////////////////////////////////////////////////////////////////////////
-Turtle::Turtle()
+Turtle::Turtle(int type)
 {
-    auto spriteName  = *(std::begin(kTurtlesSpriteNamesArr) + 1);
-
     //Init the Sprite.
     auto &sprite = getSprite();
-    sprite.loadTexture(spriteName);
+    sprite.loadTexture(
+        CoreGame::StringUtils::format("Images/turtle_%d_sprites.png", type)
+    );
 
     auto spriteRect = sprite.getBounds();
     m_spriteSize.x  = spriteRect.getWidth() / kTurtlesFramesCount;
@@ -86,6 +86,15 @@ bool Turtle::isAboveWater() const
 {
     return kAnimationIndexes[m_currAnimationIndex] != (kTurtlesFramesCount -1);
 }
+
+
+//Collision
+bool Turtle::checkCollision(const Lore::Rectangle &testRect, float safeOffset)
+{
+    return isAboveWater() && Enemy::checkCollision(testRect, safeOffset);
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Private Methods                                                            //

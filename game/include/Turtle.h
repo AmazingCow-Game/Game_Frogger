@@ -11,7 +11,7 @@ class Turtle : public Enemy
 {
     // CTOR / DTOR //
 public:
-    Turtle();
+    Turtle(int type);
     virtual ~Turtle();
 
 
@@ -25,6 +25,11 @@ public:
     virtual void setSpeed(const Lore::Vector2 &speed) override;
 
     bool isAboveWater() const;
+
+    //Collision
+    virtual bool checkCollision(const Lore::Rectangle &testRect,
+                                float safeOffset);
+
 
     // Private Methods //
 private:
