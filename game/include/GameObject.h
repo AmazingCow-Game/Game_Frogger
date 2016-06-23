@@ -47,9 +47,6 @@ public:
     //Sprite
     Lore::Sprite& getSprite();
 
-    //Bounding Box
-    virtual Lore::Rectangle getBoundingBox() = 0;
-
 
     // iVars //
 private:

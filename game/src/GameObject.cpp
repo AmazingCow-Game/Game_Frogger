@@ -7,14 +7,16 @@ USING_NS_GAME_FROGGER;
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
 ////////////////////////////////////////////////////////////////////////////////
-GameObject::GameObject()
+GameObject::GameObject() :
+    m_state(GameObject::State::Alive),
+    m_speed(Lore::Vector2::Zero())
 {
-
+    //Empty...
 }
 
 GameObject::~GameObject()
 {
-
+    //Empty...
 }
 
 
