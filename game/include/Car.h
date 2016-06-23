@@ -29,6 +29,7 @@ public:
 private:
     void randomizeFrame();
 
+
     // iVars //
 private:
     Lore::Vector2 m_frameSize;
