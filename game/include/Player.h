@@ -50,7 +50,7 @@ public:
 
     void setDieAnimationCallback(const DieCallback &callback);
 
-    virtual Lore::Rectangle getBoundingBox() override;
+    Lore::Rectangle getBoundingBox();
 
     void setLateralMovementSpeed(float speed);
 
@@ -70,6 +70,8 @@ private:
 
     void setFrameRect(int index);
     bool canMove(const Lore::Vector2 &targetPos) const;
+    void adjustPosition(Lore::Vector2 &targetPos);
+
 
     //Timer Callbacks
     void onMoveAnimationTimerTick ();
