@@ -14,26 +14,9 @@ public:
     Car();
     virtual ~Car();
 
-
-    // Update / Draw //
-public:
-    virtual void update(float dt) override;
-
-
     // Public Methods //
 public:
     void setSpeed(const Lore::Vector2 &speed);
-
-
-    // Private Methods //
-private:
-    void randomizeFrame();
-
-
-    // iVars //
-private:
-    Lore::Vector2 m_frameSize;
-
 };
 
 NS_GAME_FROGGER_END
