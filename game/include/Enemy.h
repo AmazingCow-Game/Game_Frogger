@@ -24,6 +24,9 @@ public:
     //Bounding Box
     virtual Lore::Rectangle getBoundingBox() override;
 
+    //Collision
+    virtual bool checkCollision(const Lore::Rectangle &testRect,
+                                float safeOffset);
 
     // iVars //
 private:
