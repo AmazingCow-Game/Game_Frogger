@@ -88,6 +88,8 @@ private:
 
     bool m_isMoveAnimationDone;
 
+    Lore::Vector2 m_spriteSize;
+
     //Movement
     Lore::Vector2 m_initialPosition;
     Lore::Vector2 m_minBounds;
