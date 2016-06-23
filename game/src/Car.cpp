@@ -17,10 +17,10 @@ Car::Car()
 {
     //Init the Sprite.
     auto &sprite = getSprite();
-    sprite.loadTexture("car_sprites.png");
+    sprite.loadTexture("Images/car_sprites.png");
 
-    auto spriteRect = sprite.getBounds();
-    m_frameSize.x   = spriteRect.getWidth() / kCarsFramesCount;
+    auto spriteRect = sprite.getBounds    ();
+    m_frameSize.x   = spriteRect.getWidth () / kCarsFramesCount;
     m_frameSize.y   = spriteRect.getHeight();
 
     randomizeFrame();
