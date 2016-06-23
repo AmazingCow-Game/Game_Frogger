@@ -4,6 +4,8 @@
 #include "SceneMenu.h"
 #include "SceneGame.h"
 #include "SceneSplash.h"
+#include "Tile_Constants.h"
+
 
 //Usings
 USING_NS_GAME_FROGGER;
@@ -19,8 +21,8 @@ int main(int argc, char* args[])
     // Init //
     //Window and Assets.
     windowMgr->initialize("Amazing Cow - Frogger - v1.0.0", //Caption
-                           520, 600,                        //Design Resolution
-                           520, 600,                        //Window Size
+                           kTilesCount_X * kTileSize, 600,  //Design Resolution
+                           kTilesCount_X * kTileSize, 600,  //Window Size
                            SDL_WINDOW_SHOWN,                //SDL Flags
                            SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -38,7 +40,7 @@ int main(int argc, char* args[])
 
 
     // Run //
-    gameMgr->run(Lore::make_unique<SceneSplash>());
+    gameMgr->run(Lore::make_unique<SceneGame>());
 
 
     // Shutdown //
