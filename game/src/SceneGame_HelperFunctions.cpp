@@ -1,7 +1,7 @@
 //Header
 #include "SceneGame_HelperFunctions.h"
-//Game_Kaboom
-#include "SceneGame_Tile_Constants.h"
+//Game_Frogger
+#include "Tile_Constants.h"
 
 NS_GAME_FROGGER_BEGIN
 

@@ -7,11 +7,10 @@ USING_NS_GAME_FROGGER
 ////////////////////////////////////////////////////////////////////////////////
 // Constants                                                                  //
 ////////////////////////////////////////////////////////////////////////////////
-constexpr auto kTurtlesSpriteNamesArr = {"turtle_2_sprites.png",
-                                         "turtle_3_sprites.png"};
 constexpr auto kTurtlesFramesCount = 4;
 constexpr std::array<int, 6> kAnimationIndexes = {0, 1, 2, 3, 2, 1};
-
+constexpr float kTimerFrameUpdate_Min = 1.0f;
+constexpr float kTimerFrameUpdate_Max = 3.0f;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
@@ -30,7 +29,14 @@ Turtle::Turtle(int type)
 
 
     //Init the Timer.
-    m_updateFrameClock.setInterval(1.5);
+    //COWNOTE: Would be nice if lore had a randomReal too.
+    //Random between 1.0 to 3.0 seconds.
+    auto time = Lore::GameManager::instance()->getRandomNumber(
+                    kTimerFrameUpdate_Min * 10,
+                    kTimerFrameUpdate_Max * 10
+                );
+    m_updateFrameClock.setInterval(time / 10.0f);
+
     m_updateFrameClock.setRepeatCount(CoreClock::Clock::kRepeatForever);
     m_updateFrameClock.setTickCallback(
         COREGAME_CALLBACK_0(Turtle::onUpdateFrameClockTick, this)
@@ -57,18 +63,8 @@ void Turtle::update(float dt)
     //Timer
     m_updateFrameClock.update(dt);
 
-    //Movement
-    auto newPos = getPosition() + (getSpeed() * dt);
-
-    //Moving to left...
-    if(newPos.x < getMovementMinX() && getSpeed().x < 0)
-        newPos.x = getMovementMaxX();
-
-    //Moving to right...
-    if(newPos.x > getMovementMaxX() && getSpeed().x > 0)
-        newPos.x = getMovementMinX();
-
-    setPosition(newPos);
+    //Base
+    Enemy::update(dt);
 }
 
 
