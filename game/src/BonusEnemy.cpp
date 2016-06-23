@@ -27,7 +27,7 @@ BonusEnemy::BonusEnemy()
 {
     //Sprite / Frames
     auto &sprite = getSprite();
-    sprite.loadTexture("bonus_sprites.png");
+    sprite.loadTexture("Images/bonus_sprites.png");
 
     auto spriteRect = getSprite().getBounds();
     m_spriteSize.x  = spriteRect.getWidth  () / kFramesCount;
