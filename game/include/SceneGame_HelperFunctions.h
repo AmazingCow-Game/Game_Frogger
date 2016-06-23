@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "SceneGame.h"
 #include "LevelInfo.h"
-#include "SceneGame_Tile_Constants.h"
+#include "Tile_Constants.h"
 
 NS_GAME_FROGGER_BEGIN
 
