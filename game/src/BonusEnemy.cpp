@@ -11,8 +11,8 @@ USING_NS_GAME_FROGGER
 //Frames
 constexpr int kFramesCount = 4;
 //Appear
-constexpr int kTimerAppearMin = 40;
-constexpr int kTimerAppearMax = 60;
+constexpr int kTimerAppearMin = 10;
+constexpr int kTimerAppearMax = 15;
 //Stay
 constexpr int kTimerStayMin = 3;
 constexpr int kTimerStayMax = 7;
