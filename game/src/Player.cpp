@@ -85,6 +85,8 @@ void Player::move(Direction dir)
     }
 
     m_currentDirection = dir;
+
+    adjustPosition(targetPosition);
     if(canMove(targetPosition))
        setPosition(targetPosition);
 
@@ -249,13 +251,6 @@ bool Player::canMove(const Lore::Vector2 &targetPos) const
     if(getState() != GameObject::State::Alive)
         return false;
 
-    //FROGGER_DLOG(
-    //    "Player::canMove: Pos (%.2f %.2f) - Min (%.2f %.2f) - Max (%.2f %.2f)",
-    //    targetPos.x, targetPos.y,
-    //    m_minBounds.x, m_minBounds.y,
-    //    m_maxBounds.x, m_maxBounds.y
-    //);
-
     bool moveAllowed = targetPos.y >= m_minBounds.y                  &&
                        targetPos.x >= m_minBounds.x                  &&
                        targetPos.y <= m_maxBounds.y - m_spriteSize.y &&
@@ -264,6 +259,19 @@ bool Player::canMove(const Lore::Vector2 &targetPos) const
     return moveAllowed;
 }
 
+void Player::adjustPosition(Lore::Vector2 &targetPos)
+{
+    //Horizontal
+    if(targetPos.x < m_minBounds.x)
+        targetPos.x = m_minBounds.x;
+    else if(targetPos.x >= (m_maxBounds.x - m_spriteSize.x))
+        targetPos.x = (m_maxBounds.x - m_spriteSize.x);
+    //Vertical
+    if(targetPos.y < m_minBounds.y)
+        targetPos.y = m_minBounds.y;
+    else if(targetPos.y >= (m_maxBounds.y - m_spriteSize.y))
+        targetPos.y = (m_maxBounds.y - m_spriteSize.y);
+}
 
 
 // Timer Callbacks //
