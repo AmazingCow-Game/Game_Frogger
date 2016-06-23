@@ -14,7 +14,7 @@ constexpr int kFramesCount       = kFramesCount_Alive + kFramesCount_Dying;
 
 constexpr int kFrameIndex_InitialFrame = 0;
 
-constexpr float kMoveAnimationTimerInterval = 0.15f;
+constexpr float kMoveAnimationTimerInterval  = 0.05f;
 constexpr float kDyingAnimationTimerInterval = 0.5f;
 
 constexpr int kSpeed = 40;
@@ -171,21 +171,25 @@ bool Player::isMoveAnimationDone() const
 void Player::initSprite()
 {
     auto &sprite = getSprite();
-    sprite.loadTexture("frog_sprites.png");
+    sprite.loadTexture("Images/frog_sprites.png");
 }
 
 void Player::initFrames()
 {
     auto spriteBounds = getSprite().getBounds ();
-    auto frameWidth   = spriteBounds.getWidth () / kFramesCount;
-    auto frameHeight  = spriteBounds.getHeight();
+    m_spriteSize = Lore::Vector2(
+        spriteBounds.getWidth () / kFramesCount,
+        spriteBounds.getHeight()
+    );
+
 
     //Init the Frames Rects.
     m_aliveFramesRect.reserve(kFramesCount_Alive);
     for(int i = 0; i < kFramesCount_Alive; ++i)
     {
         m_aliveFramesRect.push_back(
-            Lore::Rectangle(i * frameWidth, 0, frameWidth, frameHeight)
+            Lore::Rectangle(i * m_spriteSize.x, 0,
+                            m_spriteSize.x, m_spriteSize.y)
         );
     }
 
@@ -195,7 +199,8 @@ void Player::initFrames()
         ++i)
     {
         m_dyingFramesRect.push_back(
-            Lore::Rectangle(i * frameWidth, 0, frameWidth, frameHeight)
+            Lore::Rectangle(i * m_spriteSize.x, 0,
+                            m_spriteSize.x, m_spriteSize.y)
         );
     }
 }
@@ -251,10 +256,12 @@ bool Player::canMove(const Lore::Vector2 &targetPos) const
     //    m_maxBounds.x, m_maxBounds.y
     //);
 
-    return targetPos.y >= m_minBounds.y &&
-           targetPos.x >= m_minBounds.x &&
-           targetPos.y < m_maxBounds.y &&
-           targetPos.x < m_maxBounds.x;
+    bool moveAllowed = targetPos.y >= m_minBounds.y                  &&
+                       targetPos.x >= m_minBounds.x                  &&
+                       targetPos.y <= m_maxBounds.y - m_spriteSize.y &&
+                       targetPos.x <= m_maxBounds.x - m_spriteSize.x;
+
+    return moveAllowed;
 }
 
 
