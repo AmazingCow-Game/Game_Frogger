@@ -63,15 +63,25 @@ private:
 
     // Private Methods //
 private:
+    //Reset
     void reset(int level);
     void resetSameLevel();
     void resetNextLevel();
 
+    //Player
     void killPlayer();
 
+    //State
     void changeState(State newState);
-
     void checkVictory();
+
+    //Score
+    void updateScoreStep   (bool backwards);
+    void updateScoreTime   ();
+    void updateScoreRow    ();
+    void updateScoreBonus  ();
+    void updateScoreVictory();
+    void updateScore(int delta);
 
     // Init //
 private:
@@ -135,8 +145,12 @@ private:
     LevelInfo   m_levelInfo;
     State       m_state;
     int         m_playerLives;
-    Lore::Text  m_stateText;
     std::string m_soundToPlay;
+    int         m_score;
+    int         m_highScore;
+
+    //Texts
+    Lore::Text  m_stateText;
 
     //Game Time
     CoreClock::Clock m_countdownTimer;

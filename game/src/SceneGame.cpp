@@ -2,9 +2,9 @@
 #include "SceneGame.h"
 //Game_Frooger
 #include "GameConstants.h"
-#include "SceneGame_Tile_Constants.h"
-#include "SceneGame_HelperFunctions.h"
+#include "Tile_Constants.h"
 #include "SceneMenu.h"
+#include "SceneGame_HelperFunctions.h"
 
 //Usings
 USING_NS_GAME_FROGGER
@@ -15,6 +15,12 @@ USING_NS_GAME_FROGGER
 ////////////////////////////////////////////////////////////////////////////////
 constexpr int kOneSecond = 1;
 
+constexpr int kScore_Step    =   100;
+constexpr int kScore_Time    =    50;
+constexpr int kScore_Row     =  2500;
+constexpr int kScore_Bonus   =  5000;
+constexpr int kScore_Victory = 10000;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
@@ -23,6 +29,8 @@ SceneGame::SceneGame()
 {
     //COWTODO: Put this in a better place.
     m_playerLives = 3;
+    m_score       = 0;
+    m_highScore   = 0;
 
     initBackground();
     initStateText ();
@@ -74,13 +82,23 @@ void SceneGame::updatePlaying(float dt)
         auto moveDirection = Player::Direction::None;
 
         if(inputMgr->isKeyClick(SDL_SCANCODE_LEFT))
+        {
             moveDirection = Player::Direction::Left;
+        }
         else if(inputMgr->isKeyClick(SDL_SCANCODE_RIGHT))
+        {
             moveDirection = Player::Direction::Right;
+        }
         else if(inputMgr->isKeyClick(SDL_SCANCODE_UP))
+        {
             moveDirection = Player::Direction::Up;
+            updateScoreStep(false);
+        }
         else if(inputMgr->isKeyClick(SDL_SCANCODE_DOWN))
+        {
             moveDirection = Player::Direction::Down;
+            updateScoreStep(true);
+        }
 
         if(moveDirection != Player::Direction::None)
         {
@@ -131,7 +149,7 @@ void SceneGame::updateVictory(float dt)
     m_player.update(dt);
 
     auto inputMgr = Lore::InputManager::instance();
-    if(inputMgr->isKeyClick(SDL_SCANCODE_SPACE) && m_playerDieAnimationIsDone)
+    if(inputMgr->isKeyClick(SDL_SCANCODE_SPACE) && m_player.isMoveAnimationDone())
     {
         resetNextLevel();
         return;
@@ -188,12 +206,6 @@ void SceneGame::drawPlaying()
     m_background.draw();
     m_hud.draw();
 
-    // //COWTODO: DEBUG DRAW
-    // SDL_Rect rect = Lore::SDLHelpers::make_rect(m_waterRect);
-    // SDL_SetRenderDrawColor(Lore::WindowManager::instance()->getRenderer(),
-    //                         255, 0, 255, 255);
-    // SDL_RenderFillRect(Lore::WindowManager::instance()->getRenderer(), &rect);
-
     //Enemies
     for(auto &enemy : m_enemiesVec)
         enemy->draw();
@@ -230,6 +242,7 @@ void SceneGame::drawGameOver()
 ////////////////////////////////////////////////////////////////////////////////
 // Private Methods                                                            //
 ////////////////////////////////////////////////////////////////////////////////
+//Reset
 void SceneGame::reset(int level)
 {
     m_enemiesVec.clear();
@@ -260,6 +273,7 @@ void SceneGame::resetNextLevel()
 }
 
 
+//Player
 void SceneGame::killPlayer()
 {
     --m_playerLives;
@@ -271,6 +285,8 @@ void SceneGame::killPlayer()
     else                  changeState(SceneGame::State::GameOver);
 }
 
+
+//State
 void SceneGame::changeState(State newState)
 {
     m_state = newState;
@@ -285,8 +301,54 @@ void SceneGame::checkVictory()
             return;
     }
 
+    updateScoreTime   ();
+    updateScoreVictory();
+
     changeState(SceneGame::State::Victory);
     m_soundToPlay = kSoundName_Victory;
+}
+
+
+
+//Score
+void SceneGame::updateScoreStep(bool backwards)
+{
+    auto value = (backwards) ? -kScore_Step : kScore_Step;
+    updateScore(value);
+}
+
+void SceneGame::updateScoreTime()
+{
+    updateScore(m_remainingTime * kScore_Time);
+}
+
+void SceneGame::updateScoreRow()
+{
+    updateScore(kScore_Row);
+}
+
+void SceneGame::updateScoreBonus()
+{
+    updateScore(kScore_Bonus);
+}
+
+void SceneGame::updateScoreVictory()
+{
+    updateScore(kScore_Victory);
+}
+
+void SceneGame::updateScore(int delta)
+{
+    m_score += delta;
+    if(m_score > m_highScore)
+    {
+        m_highScore = m_score;
+        //COWTODO: Save...
+
+        m_hud.updateHighScore(m_highScore);
+    }
+
+    m_hud.updateScore(m_score);
 }
 
 
@@ -300,9 +362,9 @@ void SceneGame::initBackground()
 
 void SceneGame::initHud()
 {
-    //m_hud.updateScore        (m_score      );
-    //m_hud.updateHighScore    (m_highScore  );
-    m_hud.updateLives        (m_playerLives);
+    m_hud.updateScore        (m_score        );
+    m_hud.updateHighScore    (m_highScore    );
+    m_hud.updateLives        (m_playerLives  );
     m_hud.updateRemainingTime(m_remainingTime);
 }
 
@@ -485,22 +547,18 @@ void SceneGame::checkBonusEnemiesCollisions()
 
     for(auto &enemy : m_bonusEnemiesVec)
     {
-        Lore::Rectangle outRect;
-
-        //There is no intersection with this enemy...
-        if(!enemy->getBoundingBox().intersectionRect(playerRect, outRect))
-            continue;
-
-        FROGGER_DLOG("BONUS ENEMY INTERSECTION: %.2f %.2f %.2f %.2f",
-                     outRect.getX(), outRect.getY(),
-                     outRect.getWidth(), outRect.getHeight()
-        );
-
-        //COWTODO: Adjust the safe offset.
-        //There is an intersection, but check if the
-        //most part of player is inside of the enemy...
-        if(outRect.getWidth() >= 15)
+        //COWTODO: Remove magic numbers...
+        if(enemy->checkCollision(playerRect, 15))
         {
+            //Collided with a Gator - Should die...
+            if(enemy->getType() == BonusEnemy::Type::Alligator)
+                break;
+
+            if(enemy->getType() == BonusEnemy::Type::Fly)
+                updateScoreBonus();
+            else
+                updateScoreRow();
+
             m_player.reset();
             enemy->turnToFrog();
 
@@ -509,18 +567,10 @@ void SceneGame::checkBonusEnemiesCollisions()
 
             return; //One collision per time.
         }
-
-        //Nops, player is mostly outside...
-        else
-        {
-            killPlayer();
-            m_soundToPlay = kSoundName_DefeatNormal;
-
-            return; //One collision per time.
-        }
     }//for(auto &enemy : m_bonusEnemiesVec) ...
 
 
+    m_soundToPlay = kSoundName_DefeatNormal;
     killPlayer();
 }
 
