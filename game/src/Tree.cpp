@@ -24,25 +24,6 @@ Tree::~Tree()
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Update / Draw                                                             //
-////////////////////////////////////////////////////////////////////////////////
-void Tree::update(float dt)
-{
-    auto newPos = getPosition() + (getSpeed() * dt);
-
-    //Moving to left...
-    if(newPos.x < getMovementMinX() && getSpeed().x < 0)
-        newPos.x = getMovementMaxX();
-
-    //Moving to right...
-    if(newPos.x > getMovementMaxX() && getSpeed().x > 0)
-        newPos.x = getMovementMinX();
-
-    setPosition(newPos);
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
 // Public Methods                                                             //
 ////////////////////////////////////////////////////////////////////////////////
 void Tree::setSpeed(const Lore::Vector2 &speed)

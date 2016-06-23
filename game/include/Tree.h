@@ -15,15 +15,9 @@ public:
     virtual ~Tree();
 
 
-    // Update / Draw //
-public:
-    virtual void update(float dt) override;
-
-
     // Public Methods //
 public:
     virtual void setSpeed(const Lore::Vector2 &speed) override;
-
 };
 
 NS_GAME_FROGGER_END
