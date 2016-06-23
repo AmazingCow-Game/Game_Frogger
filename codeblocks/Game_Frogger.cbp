@@ -18,6 +18,7 @@
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Game_Frogger" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -57,12 +58,11 @@
 		<Unit filename="../game/include/SceneCredits.h" />
 		<Unit filename="../game/include/SceneGame.h" />
 		<Unit filename="../game/include/SceneGame_HelperFunctions.h" />
-		<Unit filename="../game/include/SceneGame_Tile_Constants.h" />
 		<Unit filename="../game/include/SceneMenu.h" />
 		<Unit filename="../game/include/SceneSplash.h" />
+		<Unit filename="../game/include/Tile_Constants.h" />
 		<Unit filename="../game/include/Tree.h" />
 		<Unit filename="../game/include/Turtle.h" />
-		<Unit filename="../game/include/TurtleEnemy.h" />
 		<Unit filename="../game/src/BonusEnemy.cpp" />
 		<Unit filename="../game/src/Car.cpp" />
 		<Unit filename="../game/src/Enemy.cpp" />

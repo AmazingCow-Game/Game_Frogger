@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
-	<File name="../game/src/Hud.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<ActiveTarget name="Release" />
+	<File name="../lib/Lore/include/AssetsManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="139" topLine="4" />
+			<Cursor1 position="4108" topLine="77" />
+		</Cursor>
+	</File>
+	<File name="../game/src/SceneGame.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3145" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="../game/include/GameFrogger_Utils.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="389" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/src/AssetsManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5570" topLine="115" />
+		</Cursor>
+	</File>
+	<File name="../game/src/BonusEnemy.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2386" topLine="126" />
+		</Cursor>
+	</File>
+	<File name="../game/include/Player.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1421" topLine="67" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/src/Font.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4490" topLine="76" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/src/GameManager.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3892" topLine="78" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/include/Sprite.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4392" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="../game/src/LevelInfo.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1202" topLine="45" />
 		</Cursor>
 	</File>
 	<File name="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_Verify.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -11,54 +56,69 @@
 			<Cursor1 position="4725" topLine="64" />
 		</Cursor>
 	</File>
+	<File name="../lib/Lore/src/ITransformable.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../game/include/LevelInfo.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="291" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/src/WindowManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4588" topLine="80" />
+		</Cursor>
+	</File>
+	<File name="../game/include/Enemy.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="499" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="../game/include/Tree.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="680" topLine="26" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/src/Texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5878" topLine="141" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/lib/CoreGame/include/CoreGame_Macros.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3616" topLine="38" />
+		</Cursor>
+	</File>
 	<File name="../lib/Lore/lib/CoreGame/include/Macros/CoreGame_OnlyInDebug.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3571" topLine="38" />
 		</Cursor>
 	</File>
-	<File name="../game/include/SceneGame_HelperFunctions.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../game/include/GameObject.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1557" topLine="29" />
+			<Cursor1 position="874" topLine="39" />
 		</Cursor>
 	</File>
-	<File name="../game/src/GameObject.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../game/src/Tree.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6" topLine="0" />
+			<Cursor1 position="4080" topLine="147" />
 		</Cursor>
 	</File>
-	<File name="../game/src/main.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../game/src/Player.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1005" topLine="23" />
+			<Cursor1 position="2750" topLine="85" />
 		</Cursor>
 	</File>
-	<File name="../game/include/GameConstants.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../lib/Lore/src/SDLHelpers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="881" topLine="21" />
+			<Cursor1 position="5735" topLine="121" />
 		</Cursor>
 	</File>
-	<File name="../game/src/SceneCredits.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../lib/Lore/src/Rectangle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6228" topLine="130" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/lib/CoreGame/include/Log.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5197" topLine="123" />
-		</Cursor>
-	</File>
-	<File name="../game/include/Enemy.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="173" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="../game/include/Player.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1947" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="../game/include/BonusEnemy.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="200" topLine="6" />
+			<Cursor1 position="4355" topLine="109" />
 		</Cursor>
 	</File>
 	<File name="../lib/Lore/src/Text.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -71,139 +131,9 @@
 			<Cursor1 position="7964" topLine="181" />
 		</Cursor>
 	</File>
-	<File name="../game/src/Tree.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../lib/Lore/src/Sprite.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="../game/include/Hud.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="109" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="../game/src/SceneGame.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="10823" topLine="416" />
-		</Cursor>
-	</File>
-	<File name="../game/src/SceneSplash.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6678" topLine="148" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/MathHelper.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3658" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="../game/src/SceneGame_HelperFunctions.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6441" topLine="187" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/include/AssetsManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4108" topLine="77" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/Font.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4490" topLine="76" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/include/Sprite.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4392" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="../game/src/Player.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2275" topLine="75" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/Texture.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5878" topLine="141" />
-		</Cursor>
-	</File>
-	<File name="../game/include/SceneMenu.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="523" topLine="25" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/lib/CoreGame/src/GameCore_Macros.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1042" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="../game/src/Turtle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="942" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="../game/include/GameObject.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="785" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/Vector2.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4858" topLine="99" />
-		</Cursor>
-	</File>
-	<File name="../game/src/Enemy.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1299" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="../game/include/Car.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="434" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="../game/src/SceneMenu.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1211" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="../game/src/LevelInfo.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2394" topLine="96" />
-		</Cursor>
-	</File>
-	<File name="../game/include/Turtle.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="350" topLine="9" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/Rectangle.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4355" topLine="109" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/SDLHelpers.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5735" topLine="121" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/lib/CoreGame/include/CoreGame_Macros.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3616" topLine="38" />
-		</Cursor>
-	</File>
-	<File name="../game/include/SceneGame.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1782" topLine="93" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/AssetsManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5570" topLine="115" />
-		</Cursor>
-	</File>
-	<File name="../game/src/Car.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1944" topLine="63" />
+			<Cursor1 position="5151" topLine="133" />
 		</Cursor>
 	</File>
 	<File name="../lib/Lore/lib/CoreGame/src/StringUtils.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -211,24 +141,39 @@
 			<Cursor1 position="3577" topLine="45" />
 		</Cursor>
 	</File>
-	<File name="../game/src/BonusEnemy.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../lib/Lore/src/MathHelper.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4026" topLine="131" />
+			<Cursor1 position="3658" topLine="44" />
 		</Cursor>
 	</File>
-	<File name="../game/include/GameFrogger_Utils.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="../lib/Lore/src/Vector2.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="367" topLine="3" />
+			<Cursor1 position="4858" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="../game/src/SceneGame_HelperFunctions.cpp" open="1" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/lib/CoreGame/include/Log.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5197" topLine="123" />
+		</Cursor>
+	</File>
+	<File name="../game/src/Enemy.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4016" topLine="155" />
+		</Cursor>
+	</File>
+	<File name="../lib/Lore/lib/CoreGame/src/GameCore_Macros.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1054" topLine="31" />
 		</Cursor>
 	</File>
 	<File name="../lib/Lore/include/SoundManager.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="4059" topLine="71" />
-		</Cursor>
-	</File>
-	<File name="../lib/Lore/src/Sprite.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5151" topLine="133" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
