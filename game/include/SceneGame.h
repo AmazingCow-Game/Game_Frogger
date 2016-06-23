@@ -13,6 +13,7 @@
 //Player
 #include "Player.h"
 //Other
+#include "LevelInfo.h"
 #include "Hud.h"
 
 
@@ -62,7 +63,7 @@ private:
 
     // Private Methods //
 private:
-    void reset();
+    void reset(int level);
     void resetSameLevel();
     void resetNextLevel();
 
@@ -84,11 +85,6 @@ private:
     void initBonusEnemies();
     void initStateText   ();
     void initSounds      ();
-
-    //COWTODO: Refactor....
-    void createCarHelper(int lane, int groupCount, int startX, int direction);
-    void createTreeHelper(int lane, int groupCount, int startX, int direction);
-    void createTurtleHelper(int lane, int groupCount, int startX, int direction);
 
 
     // Collisions //
@@ -136,8 +132,8 @@ private:
     std::vector<Enemy *>                     m_enemiesVec;
 
     //House Keeping
+    LevelInfo   m_levelInfo;
     State       m_state;
-    int         m_level;
     int         m_playerLives;
     Lore::Text  m_stateText;
     std::string m_soundToPlay;
@@ -145,7 +141,6 @@ private:
     //Game Time
     CoreClock::Clock m_countdownTimer;
     int              m_remainingTime;
-    int              m_levelTime;
 };
 
 NS_GAME_FROGGER_END

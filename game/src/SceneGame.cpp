@@ -22,9 +22,7 @@ constexpr int kOneSecond = 1;
 SceneGame::SceneGame()
 {
     //COWTODO: Put this in a better place.
-    m_levelTime   = 360;
     m_playerLives = 3;
-    m_level       = 1;
 
     initBackground();
     initStateText ();
@@ -35,7 +33,7 @@ SceneGame::SceneGame()
         Helper_TileToVec(kWaterTilesCount_X,    kWaterTilesCount_Y)
     );
 
-    reset();
+    reset(1);
 
     soundPlay_Intro();
 }
@@ -63,7 +61,8 @@ void SceneGame::updatePlaying(float dt)
     //Pause...
     if(inputMgr->isKeyClick(SDL_SCANCODE_SPACE))
     {
-        changeState(SceneGame::State::Paused);
+        // changeState(SceneGame::State::Paused);
+        reset(1);
         return;
     }
 
@@ -97,8 +96,8 @@ void SceneGame::updatePlaying(float dt)
     for(auto &enemy : m_enemiesVec)
         enemy->update(dt);
 
-    //Player
-    m_player.update(dt);
+    m_player.setIsSafe(false);
+    m_player.setLateralMovementSpeed(0);
 
     //Collisions
     checkCarsCollisions        ();
@@ -107,6 +106,8 @@ void SceneGame::updatePlaying(float dt)
     checkWaterCollision        ();
     checkBonusEnemiesCollisions();
 
+    //Player
+    m_player.update(dt);
 
     if(!m_soundToPlay.empty())
         Lore::SoundManager::instance()->playEffect(m_soundToPlay);
@@ -229,9 +230,10 @@ void SceneGame::drawGameOver()
 ////////////////////////////////////////////////////////////////////////////////
 // Private Methods                                                            //
 ////////////////////////////////////////////////////////////////////////////////
-void SceneGame::reset()
+void SceneGame::reset(int level)
 {
     m_enemiesVec.clear();
+    m_levelInfo = LevelInfo_GetInfoForLevel(level);
 
     initCars        ();
     initTrees       ();
@@ -244,7 +246,7 @@ void SceneGame::reset()
 void SceneGame::resetSameLevel()
 {
     //COWTODO: Remove magic numbers.
-    m_remainingTime = m_levelTime - (m_level * 10);
+    m_remainingTime = m_levelInfo.time;
     changeState(SceneGame::State::Playing);
 
     initPlayer();
@@ -254,8 +256,7 @@ void SceneGame::resetSameLevel()
 
 void SceneGame::resetNextLevel()
 {
-    m_level++;
-    reset();
+    reset(m_levelInfo.level + 1);
 }
 
 
@@ -294,7 +295,7 @@ void SceneGame::checkVictory()
 ////////////////////////////////////////////////////////////////////////////////
 void SceneGame::initBackground()
 {
-    m_background.loadTexture("background.png");
+    m_background.loadTexture("Images/background.png");
 }
 
 void SceneGame::initHud()
@@ -334,7 +335,7 @@ void SceneGame::initTimers()
     auto doneCallback = COREGAME_CALLBACK_0(SceneGame::onCountdownTimerDone, this);
 
     m_countdownTimer.setInterval    (kOneSecond);
-    m_countdownTimer.setRepeatCount (m_levelTime);
+    m_countdownTimer.setRepeatCount (m_levelInfo.time);
     m_countdownTimer.setTickCallback(tickCallback);
     m_countdownTimer.setDoneCallback(doneCallback);
 
@@ -344,45 +345,19 @@ void SceneGame::initTimers()
 void SceneGame::initCars()
 {
     m_carsVec.clear();
-
-    //Lane 1
-    createCarHelper(0, 4, 5,  -1);
-
-    //Lane 2
-    createCarHelper(1, 2, 0,  1);
-    createCarHelper(1, 2, 10, 1);
-
-    //Lane 3
-    createCarHelper(2, 1, 5,  -1);
-
-    //Lane 4
-    createCarHelper(3, 4, 5,  1);
-
-    //Lane 5
-    createCarHelper(4, 3, 0,  -1);
-    createCarHelper(4, 3, 10, -1);
+    Helper_createCar(m_levelInfo, m_carsVec, m_enemiesVec);
 }
 
 void SceneGame::initTrees()
 {
     m_treesVec.clear();
-
-    // createTreeHelper(0, 1, 2, -1);
-    // createTreeHelper(1, 1, 2, -1);
-    // createTreeHelper(2, 1, 2, -1);
-    // createTreeHelper(3, 1, 2, -1);
-    // createTreeHelper(4, 1, 2, -1);
+    Helper_createTree(m_levelInfo, m_treesVec, m_enemiesVec);
 }
 
 void SceneGame::initTurtles()
 {
     m_turtlesVec.clear();
-
-    createTurtleHelper(0, 1, 2, -1);
-    createTurtleHelper(1, 1, 2,  1);
-    createTurtleHelper(2, 1, 2, -1);
-    createTurtleHelper(3, 1, 2,  1);
-    createTurtleHelper(4, 1, 2, -1);
+    Helper_createTurtle(m_levelInfo, m_turtlesVec, m_enemiesVec);
 }
 
 void SceneGame::initBonusEnemies()
@@ -424,70 +399,6 @@ void SceneGame::initSounds()
 }
 
 
-void SceneGame::createCarHelper(int lane, int groupCount, int startX, int direction)
-{
-    for(int i = 0; i < groupCount; ++i)
-    {
-        auto car = std::make_shared<Car>();
-
-        //COWTODO: Remove magic numbers...
-        car->setSpeed(Lore::Vector2(40 * direction, 0));
-        car->setPosition(
-            Helper_TileToVec(kHighwayTiles_Initial_X + i + startX,
-                             kHighwayTiles_Initial_Y + lane)
-        );
-
-        car->setMovementBounds(kHighwayTiles_Initial_X * kTileSize,
-                              kHighwayTilesCount_X * kTileSize);
-
-        m_carsVec.push_back(car);
-        m_enemiesVec.push_back(car.get());
-    }
-}
-
-void SceneGame::createTreeHelper(int lane, int groupCount, int startX, int direction)
-{
-    for(int i = 0; i < groupCount; ++i)
-    {
-        auto tree = std::make_shared<Tree>();
-
-        //COWTODO: Remove magic numbers...
-        tree->setSpeed(Lore::Vector2(40 * direction, 0));
-        tree->setPosition(
-            Helper_TileToVec(kWaterTiles_Initial_X + i + startX,
-                             kWaterTiles_Initial_Y + lane)
-        );
-
-        tree->setMovementBounds(kWaterTiles_Initial_X * kTileSize,
-                               kWaterTilesCount_X    * kTileSize);
-
-        m_treesVec.push_back(tree);
-        m_enemiesVec.push_back(tree.get());
-    }
-}
-
-void SceneGame::createTurtleHelper(int lane, int groupCount, int startX, int direction)
-{
-    for(int i = 0; i < groupCount; ++i)
-    {
-        auto turtle = std::make_shared<Turtle>();
-
-        //COWTODO: Remove magic numbers...
-        turtle->setSpeed(Lore::Vector2(40 * direction, 0));
-        turtle->setPosition(
-                Helper_TileToVec(kWaterTiles_Initial_X + i + startX,
-                                 kWaterTiles_Initial_Y + lane)
-        );
-
-        turtle->setMovementBounds(kWaterTiles_Initial_X * kTileSize,
-                               kWaterTilesCount_X    * kTileSize);
-
-        m_turtlesVec.push_back(turtle);
-        m_enemiesVec.push_back(turtle.get());
-    }
-}
-
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Collisions                                                                 //
@@ -500,97 +411,55 @@ void SceneGame::checkCarsCollisions()
     auto playerRect = m_player.getBoundingBox();
     for(auto &car : m_carsVec)
     {
-        Lore::Rectangle outRect;
-        if(car->getBoundingBox().intersectionRect(playerRect, outRect))
-        {
-            FROGGER_DLOG("Car INTERSECTION: %.2f %.2f %.2f %.2f",
-                         outRect.getX(), outRect.getY(),
-                         outRect.getWidth(), outRect.getHeight()
-            );
+        if(!car->checkCollision(playerRect, 15))
+            continue;
 
-            //COWTODO: Adjust the safe offset.
-            if(outRect.getWidth() > 15)
-            {
-                killPlayer();
-                m_soundToPlay = kSoundName_DefeatNormal;
+        killPlayer();
+        m_soundToPlay = kSoundName_DefeatNormal;
 
-                return; //One collision per time
-            }
-
-            return; //One collision per time.
-        }
+        return; //One collision per time
     }//for(auto &car : m_carsVec)
 }
 
 void SceneGame::checkTreesCollisions()
 {
-    //Assumes that player isn't colliding with any of the trees.
-    m_player.setIsSafe(false);
-    m_player.setLateralMovementSpeed(0);
-
     if(!Helper_FrogIsOnWaterRow(m_player))
         return;
-
 
     auto playerRect = m_player.getBoundingBox();
 
     for(auto &tree : m_treesVec)
     {
-        Lore::Rectangle outRect;
-        if(tree->getBoundingBox().intersectionRect(playerRect, outRect))
-        {
-            FROGGER_DLOG("TREE INTERSECTION: %.2f %.2f %.2f %.2f",
-                         outRect.getX(), outRect.getY(),
-                         outRect.getWidth(), outRect.getHeight()
-            );
+        if(!tree->checkCollision(playerRect, 15))
+            continue;
 
-            //COWTODO: Adjust the safe offset.
-            if(outRect.getWidth() < 15)
-                return;
+        //Player is colliding - Make it move with the tree
+        //and set that is is safe :D
+        m_player.setLateralMovementSpeed(tree->getSpeed().x);
+        m_player.setIsSafe(true);
 
-            //Player is colliding - Make it move with the tree
-            //and set that is is safe :D
-            m_player.setLateralMovementSpeed(tree->getSpeed().x);
-            m_player.setIsSafe(true);
-
-            return;
-        }
+        return;
     }//for(auto &tree : m_treesVec)...
 }
 
 void SceneGame::checkTurtlesCollisions()
 {
-    //Assumes that player isn't colliding with any of the turtles.
-    m_player.setIsSafe(false);
-    m_player.setLateralMovementSpeed(0);
-
     if(!Helper_FrogIsOnWaterRow(m_player))
         return;
-
 
     auto playerRect = m_player.getBoundingBox();
 
     for(auto &turtle : m_turtlesVec)
     {
-        Lore::Rectangle outRect;
-        if(turtle->getBoundingBox().intersectionRect(playerRect, outRect))
-        {
-            FROGGER_DLOG("TURTTLE INTERSECTION: %.2f %.2f %.2f %.2f",
-                         outRect.getX(), outRect.getY(),
-                         outRect.getWidth(), outRect.getHeight()
-            );
+        if(!turtle->checkCollision(playerRect, 15))
+            continue;
 
-            //COWTODO: Adjust the safe offset.
-            if(outRect.getWidth() < 15 || !turtle->isAboveWater())
-                return;
+        //Player is colliding - Make it move with the turtle
+        //and set that is is safe :D
+        m_player.setLateralMovementSpeed(turtle->getSpeed().x);
+        m_player.setIsSafe(true);
 
-            //Player is colliding - Make it move with the turtle
-            //and set that is is safe :D
-            m_player.setLateralMovementSpeed(turtle->getSpeed().x);
-            m_player.setIsSafe(true);
-
-            return;
-        }
+        return;
     }//for(auto &turtle : m_turtleVec)...
 }
 
@@ -692,7 +561,7 @@ void SceneGame::onPlayerDie()
 void SceneGame::soundPlay_Intro()
 {
     auto soundMgr = Lore::SoundManager::instance();
-    soundMgr->playEffect(kSoundName_MusicIntro);
+    // soundMgr->playEffect(kSoundName_MusicIntro);
 }
 
 void SceneGame::soundPlay_TimeUp()
