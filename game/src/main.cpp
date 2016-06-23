@@ -3,13 +3,13 @@
 #include "GameFrogger_Utils.h"
 #include "SceneMenu.h"
 #include "SceneGame.h"
+#include "SceneSplash.h"
 
 //Usings
 USING_NS_GAME_FROGGER;
 
 int main(int argc, char* args[])
 {
-
     auto windowMgr = Lore::WindowManager::instance();
     auto assetsMgr = Lore::AssetsManager::instance();
     auto inputMgr  = Lore::InputManager::instance ();
@@ -18,7 +18,7 @@ int main(int argc, char* args[])
 
     // Init //
     //Window and Assets.
-    windowMgr->initialize("Amazing Cow - Frogger - v0.1",   //Caption
+    windowMgr->initialize("Amazing Cow - Frogger - v1.0.0", //Caption
                            520, 600,                        //Design Resolution
                            520, 600,                        //Window Size
                            SDL_WINDOW_SHOWN,                //SDL Flags
@@ -27,7 +27,10 @@ int main(int argc, char* args[])
     assetsMgr->initialize("./assets");
 
     //Sound and Input.
-    soundMgr->initialize("./assets/"); //Use the Lore Defaults.
+    soundMgr->initialize(Lore::SoundManager::kDefaultFrequency,
+                         Lore::SoundManager::kDefaultFormat,
+                         Lore::SoundManager::kDefaultChannels,
+                         Lore::SoundManager::kDefaultChunkSize / 4); //Use the Lore Defaults.
     inputMgr->initialize();
 
     //Game.
@@ -35,7 +38,7 @@ int main(int argc, char* args[])
 
 
     // Run //
-    gameMgr->run(Lore::make_unique<SceneGame>());
+    gameMgr->run(Lore::make_unique<SceneSplash>());
 
 
     // Shutdown //
