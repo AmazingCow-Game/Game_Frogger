@@ -3,6 +3,7 @@
 //Game_Frooger
 #include "GameConstants.h"
 #include "SceneGame.h"
+#include "SceneCredits.h"
 
 //Usings
 USING_NS_GAME_FROGGER
@@ -22,6 +23,7 @@ SceneMenu::SceneMenu()
     initSprites();
     initTexts  ();
     initPlayer ();
+    initSounds ();
 }
 
 
@@ -35,7 +37,11 @@ void SceneMenu::update(float dt)
     if(inputMgr->isKeyClick(SDL_SCANCODE_RETURN))
     {
         auto gameMgr = Lore::GameManager::instance();
-        gameMgr->changeScene(Lore::make_unique<SceneGame>());
+
+        if(m_selectionIndex == 0)
+            gameMgr->changeScene(Lore::make_unique<SceneGame>());
+        else
+            gameMgr->changeScene(Lore::make_unique<SceneCredits>());
 
         return;
     }
@@ -53,12 +59,11 @@ void SceneMenu::update(float dt)
 
 void SceneMenu::draw()
 {
-    //m_background.draw();
-    m_logo.draw      ();
+    m_logo.draw();
 
-    m_1PlayerGameText.draw ();
-    m_2PlayersGameText.draw();
-    m_creditsText.draw     ();
+    m_playText.draw      ();
+    m_creditsText.draw   ();
+    m_amazingcowText.draw();
 
     m_selectionFrog.draw();
 }
@@ -69,8 +74,7 @@ void SceneMenu::draw()
 ////////////////////////////////////////////////////////////////////////////////
 void SceneMenu::initSprites()
 {
-    m_background.loadTexture("background.png");
-    m_logo.loadTexture("frogger_title.png");
+    m_logo.loadTexture("Images/frogger_title.png");
 
     auto winRect = Lore::WindowManager::instance()->getWindowRect();
     m_logo.setPosition(
@@ -82,44 +86,55 @@ void SceneMenu::initSprites()
 void SceneMenu::initTexts()
 {
     //Load the fonts.
-    m_1PlayerGameText.loadFont (kFontName, kFontSize_Menu);
-    m_2PlayersGameText.loadFont(kFontName, kFontSize_Menu);
-    m_creditsText.loadFont     (kFontName, kFontSize_Menu);
+    m_playText.loadFont      (kFontName, kFontSize_Menu);
+    m_creditsText.loadFont   (kFontName, kFontSize_Menu);
+    m_amazingcowText.loadFont(kFontName, kFontSize_AmazingCowText);
 
     //Set the strings.
-    m_1PlayerGameText.setString ("1 - Player Game");
-    m_2PlayersGameText.setString("2 - Players Game");
-    m_creditsText.setString     ("Credits");
+    m_playText.setString      ("Play");
+    m_creditsText.setString   ("Credits");
+    m_amazingcowText.setString("amazingcow - 2016");
 
     //Set the positions.
     auto winRect = Lore::WindowManager::instance()->getWindowRect();
 
-    m_1PlayerGameText.setPosition(
+    m_playText.setPosition(
         Lore::Vector2::OffsetBy(winRect.getCenter(),
-                                -(m_1PlayerGameText.getBounds().getWidth() / 2),
+                                -(m_playText.getBounds().getWidth() / 2),
                                 0)
     );
-    m_1PlayerGameText.setOrigin(Lore::ITransformable::OriginHelpers::TopLeft());
+    m_playText.setOrigin(Lore::ITransformable::OriginHelpers::TopLeft());
 
-    m_2PlayersGameText.setPosition(
-        Lore::Vector2::OffsetBy(m_1PlayerGameText.getPosition(), 0, 40)
-    );
-    m_2PlayersGameText.setOrigin(Lore::ITransformable::OriginHelpers::TopLeft());
 
     m_creditsText.setPosition(
-        Lore::Vector2::OffsetBy(m_2PlayersGameText.getPosition(), 0, 40)
+        Lore::Vector2::OffsetBy(m_playText.getPosition(), 0, 40)
     );
     m_creditsText.setOrigin(Lore::ITransformable::OriginHelpers::TopLeft());
+
+
+    m_amazingcowText.setPosition(winRect.getCenter().x, winRect.getHeight() - 20);
+    m_amazingcowText.setOrigin(Lore::ITransformable::OriginHelpers::BottomCenter());
 }
 
 void SceneMenu::initPlayer()
 {
-    auto textPos  = m_1PlayerGameText.getPosition();
+    auto textPos  = m_playText.getPosition();
     auto frogSize = m_selectionFrog.getSprite().getBounds().getWidth();
     auto finalPos = Lore::Vector2::OffsetBy(textPos, -frogSize - 10, -7);
 
+
+    m_selectionFrog.setMovementBounds(
+        Lore::Vector2::Zero(),
+        Lore::Vector2(10000, 10000)
+    );
+
     m_selectionFrog.setInitialPosition(finalPos);
     m_selectionFrog.reset();
+}
+
+void SceneMenu::initSounds()
+{
+    Lore::SoundManager::instance()->loadEffect(kSoundName_Jump);
 }
 
 
@@ -130,15 +145,20 @@ void SceneMenu::changeSelectionIndex(int delta)
 {
     //Out of selection bounds.
     if(m_selectionIndex + delta < 0 ||
-       m_selectionIndex + delta > 2)
+       m_selectionIndex + delta > 1)
     {
         return;
     }
 
+    //Update Selection
     m_selectionIndex += delta;
 
+    //Move Frog
     auto direction = (delta < 0) ? Player::Direction::Up
                                  : Player::Direction::Down;
 
     m_selectionFrog.move(direction);
+
+    //Play sound
+    Lore::SoundManager::instance()->playEffect(kSoundName_Jump);
 }

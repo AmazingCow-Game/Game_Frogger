@@ -28,6 +28,7 @@ private:
     void initSprites();
     void initTexts  ();
     void initPlayer ();
+    void initSounds ();
 
 
     // Selection //
@@ -38,13 +39,12 @@ private:
     // iVars //
 private:
     //Sprites
-    Lore::Sprite m_background;
     Lore::Sprite m_logo;
 
     //Texts
-    Lore::Text m_1PlayerGameText;
-    Lore::Text m_2PlayersGameText;
+    Lore::Text m_playText;
     Lore::Text m_creditsText;
+    Lore::Text m_amazingcowText;
 
     //Selection
     Player m_selectionFrog;
