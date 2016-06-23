@@ -3,6 +3,7 @@
 
 //Game_Frogger
 #include "GameFrogger_Utils.h"
+#include "Tile_Constants.h"
 
 NS_GAME_FROGGER_BEGIN
 
@@ -10,7 +11,7 @@ struct EnemyInfo
 {
     int minSpeed;
     int maxSpeed;
-    std::array<int, 13> pattern;
+    std::array<int, kTilesCount_X> pattern;
 };
 
 struct LevelInfo

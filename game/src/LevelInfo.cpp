@@ -38,7 +38,7 @@ void fillEnemyInfo(std::array<EnemyInfo, 5> &enemyInfo,
     enemyInfo[enemyInfoIndex].maxSpeed = content[1];
 
     std::copy_n(
-        std::begin(content)+2, 13,
+        std::begin(content)+2, kTilesCount_X,
         std::begin(enemyInfo[enemyInfoIndex].pattern)
     );
 }
@@ -47,8 +47,12 @@ LevelInfo LevelInfo_GetInfoForLevel(int level)
 {
     LevelInfo levelInfo;
 
-    auto levelPath = Lore::AssetsManager::instance()->fullpath("LevelData/level1.txt");
+    levelInfo.level = level;
+
+    auto levelName = CoreGame::StringUtils::format("LevelData/level%d.txt", level);
+    auto levelPath = Lore::AssetsManager::instance()->fullpath(levelName);
     auto infile    = std::ifstream(levelPath);
+
     COREGAME_VERIFY(infile);
 
     std::string line;
