@@ -1,3 +1,6 @@
 *.o
 codeblocks/bin
 codeblocks/obj/
+build/
+archives/
+bin/
