@@ -131,7 +131,7 @@ void SceneGame::updatePlaying(float dt)
         Lore::SoundManager::instance()->playEffect(m_soundToPlay);
 }
 
-void SceneGame::updatePaused(float dt)
+void SceneGame::updatePaused(float /* dt */)
 {
     auto inputMgr = Lore::InputManager::instance();
 
@@ -611,7 +611,7 @@ void SceneGame::onPlayerDie()
 void SceneGame::soundPlay_Intro()
 {
     auto soundMgr = Lore::SoundManager::instance();
-    // soundMgr->playEffect(kSoundName_MusicIntro);
+    soundMgr->playEffect(kSoundName_MusicIntro);
 }
 
 void SceneGame::soundPlay_TimeUp()
