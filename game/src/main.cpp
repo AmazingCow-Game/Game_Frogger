@@ -32,7 +32,7 @@ int main(int argc, char* args[])
     soundMgr->initialize(Lore::SoundManager::kDefaultFrequency,
                          Lore::SoundManager::kDefaultFormat,
                          Lore::SoundManager::kDefaultChannels,
-                         Lore::SoundManager::kDefaultChunkSize / 4); //Use the Lore Defaults.
+                         Lore::SoundManager::kDefaultChunkSize / 4);
     inputMgr->initialize();
 
     //Game.
@@ -40,7 +40,7 @@ int main(int argc, char* args[])
 
 
     // Run //
-    gameMgr->run(Lore::make_unique<SceneGame>());
+    gameMgr->run(Lore::make_unique<SceneSplash>());
 
 
     // Shutdown //
