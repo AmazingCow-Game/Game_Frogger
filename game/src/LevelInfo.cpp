@@ -94,7 +94,7 @@ LevelInfo LevelInfo_GetInfoForLevel(int level)
     auto levelPath = Lore::AssetsManager::instance()->fullpath(levelName);
     auto infile    = std::ifstream(levelPath);
 
-    COREGAME_VERIFY(infile);
+    COREGAME_VERIFY(infile.is_open());
 
 
     std::string line;
