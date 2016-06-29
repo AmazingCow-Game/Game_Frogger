@@ -82,6 +82,9 @@ void Player::move(Direction dir)
         case Direction::Right : targetPosition.x += speed.x; break;
         case Direction::Up    : targetPosition.y -= speed.y; break;
         case Direction::Down  : targetPosition.y += speed.y; break;
+        default: {
+            COREGAME_ASSERT(false, "Cannot pass Direction::None to move");
+        }
     }
 
     m_currentDirection = dir;
