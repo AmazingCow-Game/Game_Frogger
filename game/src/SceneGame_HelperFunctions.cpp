@@ -89,26 +89,28 @@ void Helper_createCar(
     std::vector<Enemy *>              &enemiesVec)
 {
     auto gm = Lore::GameManager::instance();
-    for(int i = 0; i < levelInfo.carsInfo.size(); ++i)
+
+    for(const auto& carInfo : levelInfo.carsInfo)
     {
-        const auto& carInfo = levelInfo.carsInfo[i];
         //Decide Speed
         auto finalSpeed = gm->getRandomNumber(carInfo.minSpeed,
                                               carInfo.maxSpeed);
+        finalSpeed *= carInfo.direction;
+
 
         //Build the cars with the pattern.
-        for(int j = 0; j < carInfo.pattern.size(); ++j)
+        for(int i = 0; i < (int)carInfo.pattern.size(); ++i)
         {
             //Empty slot...
-            if(carInfo.pattern[j] == 0)
+            if(carInfo.pattern[i] == 0)
                 continue;
 
             auto car = std::make_shared<Car>();
 
             car->setSpeed(Lore::Vector2(finalSpeed, 0));
             car->setPosition(
-                Helper_TileToVec(kHighwayTiles_Initial_X + j,
-                                 kHighwayTiles_Initial_Y + i)
+                Helper_TileToVec(kHighwayTiles_Initial_X + i,
+                                 kWaterTiles_Initial_Y + 1 + carInfo.row)
             );
 
             car->setMovementBounds(kHighwayTiles_Initial_X * kTileSize,
@@ -120,33 +122,34 @@ void Helper_createCar(
     }
 }
 
+
 void Helper_createTree(
     const LevelInfo                    &levelInfo,
     std::vector<std::shared_ptr<Tree>> &treesVec,
     std::vector<Enemy *>               &enemiesVec)
 {
     auto gm = Lore::GameManager::instance();
-    for(int i = 0; i < levelInfo.treesInfo.size(); ++i)
+    for(const auto& treeInfo : levelInfo.treesInfo)
     {
-        const auto& treeInfo = levelInfo.treesInfo[i];
-
         //Decide Speed
         auto finalSpeed = gm->getRandomNumber(treeInfo.minSpeed,
                                               treeInfo.maxSpeed);
+        finalSpeed *= treeInfo.direction;
+
 
         //Build the trees with the pattern.
-        for(int j = 0; j < treeInfo.pattern.size(); ++j)
+        for(int i = 0; i < (int)treeInfo.pattern.size(); ++i)
         {
             //Empty slot...
-            if(treeInfo.pattern[j] == 0)
+            if(treeInfo.pattern[i] == 0)
                 continue;
 
-            auto tree = std::make_shared<Tree>(treeInfo.pattern[j]);
+            auto tree = std::make_shared<Tree>(treeInfo.pattern[i]);
 
             tree->setSpeed(Lore::Vector2(finalSpeed, 0));
             tree->setPosition(
-                Helper_TileToVec(kWaterTiles_Initial_X + j,
-                                 kWaterTiles_Initial_Y + i)
+                Helper_TileToVec(kWaterTiles_Initial_X + i,
+                                 kWaterTiles_Initial_Y + treeInfo.row)
             );
 
             tree->setMovementBounds(kWaterTiles_Initial_X * kTileSize,
@@ -164,31 +167,31 @@ void Helper_createTurtle(
     std::vector<Enemy *>                 &enemiesVec)
 {
     auto gm = Lore::GameManager::instance();
-    for(int i = 0; i < levelInfo.turtlesInfo.size(); ++i)
+    for(const auto& turtleInfo : levelInfo.turtlesInfo)
     {
-        const auto& turtleInfo = levelInfo.turtlesInfo[i];
-
         //Decide Speed
         auto finalSpeed = gm->getRandomNumber(turtleInfo.minSpeed,
                                               turtleInfo.maxSpeed);
+        finalSpeed *= turtleInfo.direction;
+
 
         //Build the turtles with the pattern.
-        for(int j = 0; j < turtleInfo.pattern.size(); ++j)
+        for(int i = 0; i < (int)turtleInfo.pattern.size(); ++i)
         {
             //Empty slot...
-            if(turtleInfo.pattern[j] == 0)
+            if(turtleInfo.pattern[i] == 0)
                 continue;
 
-            auto turtle = std::make_shared<Turtle>(turtleInfo.pattern[j]);
+            auto turtle = std::make_shared<Turtle>(turtleInfo.pattern[i]);
 
             turtle->setSpeed(Lore::Vector2(finalSpeed, 0));
             turtle->setPosition(
-                Helper_TileToVec(kWaterTiles_Initial_X + j,
-                                 kWaterTiles_Initial_Y + i)
+                Helper_TileToVec(kWaterTiles_Initial_X + i,
+                                 kWaterTiles_Initial_Y + turtleInfo.row)
             );
 
             turtle->setMovementBounds(kWaterTiles_Initial_X * kTileSize,
-                                      kWaterTilesCount_X     * kTileSize);
+                                      kWaterTilesCount_X    * kTileSize);
 
             turtlesVec.push_back(turtle);
             enemiesVec.push_back(turtle.get());

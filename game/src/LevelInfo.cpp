@@ -3,60 +3,102 @@
 #include "LevelInfo.h"
 //std
 #include <algorithm>
+#include <cctype>
 #include <fstream>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 NS_GAME_FROGGER_BEGIN
 using namespace std;
 
-std::vector<int> as_int_vector(const std::string &str)
+std::array<int, kTilesCount_X> asIntArray(const std::string &str)
 {
-    std::vector<int>  vec;
-    std::stringstream ss;
+    std::array<int, kTilesCount_X> arr;
+    std::stringstream ss(str);
 
-    ss << str;
-    while(ss)
+    std::string s;
+
+    for(auto &e : arr)
     {
-        int i;
-        ss >> i;
-        vec.push_back(i);
+        ss >> s;
+        if(s == "-")
+            e = 0;
+        else
+            e = std::stoi(s);
     }
 
-    return vec;
+    return arr;
 }
 
-void fillEnemyInfo(std::array<EnemyInfo, 5> &enemyInfo,
-                   int       enemyInfoIndex,
-                   const     std::string line)
+std::string stringTrimAndUpper(const std::string &str)
 {
-    std::cout << line << std::endl;
-    auto content = as_int_vector(line);
+    int start  = str.find_first_not_of(" ");
+    int finish = str.find_last_not_of (" ");
 
-    enemyInfo[enemyInfoIndex].minSpeed = content[0];
-    enemyInfo[enemyInfoIndex].maxSpeed = content[1];
+    auto ret =  str.substr(start, (finish - start) + 1);
+    for(auto &c : ret) c = std::toupper(c);
 
-    std::copy_n(
-        std::begin(content)+2, kTilesCount_X,
-        std::begin(enemyInfo[enemyInfoIndex].pattern)
-    );
+    return ret;
+}
+
+void buildEnemyInfo(const std::string &line, LevelInfo &levelInfo)
+{
+    //Each line of enemy info is defined as:
+    //    Row |     Type        |  Dir       | MIN  | MAX  | PATTERN
+    //    int | Tree/Turtle/Car | Left/Right | int  | int  | int array
+    //Each field of each line must be separated by the '|' (pipe) char.
+    //So let's read it :D
+
+    std::vector<std::string> fields;
+    fields.reserve(6); //We have at most 6 fields.
+
+    auto index = 0;
+    while(true)
+    {
+        auto pos   = line.find_first_of("|", index);
+        auto field = line.substr(index, pos - index);
+
+        fields.push_back(stringTrimAndUpper(field));
+
+        index = pos + 1;
+
+        //Reach the end of fields...
+        if(pos == std::string::npos)
+            break;
+    }
+
+
+    //COWTODO: Check errors.
+    EnemyInfo enemyInfo;
+
+    enemyInfo.row       = std::stoi(fields[0]);
+    FROGGER_DLOG("ROW : %d", enemyInfo.row);
+    enemyInfo.direction = (fields[2] == "LEFT") ? -1 : 1;
+    enemyInfo.minSpeed  = std::stoi(fields[3]);
+    enemyInfo.maxSpeed  = std::stoi(fields[4]);
+    enemyInfo.pattern   = asIntArray(fields[5]);
+
+         if(fields[1] == "CAR"   ) levelInfo.carsInfo.push_back   (enemyInfo);
+    else if(fields[1] == "TREE"  ) levelInfo.treesInfo.push_back  (enemyInfo);
+    else if(fields[1] == "TURTLE") levelInfo.turtlesInfo.push_back(enemyInfo);
 }
 
 LevelInfo LevelInfo_GetInfoForLevel(int level)
 {
     LevelInfo levelInfo;
-
     levelInfo.level = level;
 
+    //Open the file
     auto levelName = CoreGame::StringUtils::format("LevelData/level%d.txt", level);
     auto levelPath = Lore::AssetsManager::instance()->fullpath(levelName);
     auto infile    = std::ifstream(levelPath);
 
     COREGAME_VERIFY(infile);
 
+
     std::string line;
-    int currentLineCount = 0;
+    int         lineIndex = 0;
 
     while(!infile.eof())
     {
@@ -66,48 +108,14 @@ LevelInfo LevelInfo_GetInfoForLevel(int level)
         if(line.empty() || line[0] == '#')
             continue;
 
-        ++currentLineCount;
+        //Fist line of file is the LevelTime
+        if(lineIndex == 0)
+            //COWTODO: Check errors.
+            levelInfo.time = std::stoi(line);
+        else
+            buildEnemyInfo(line, levelInfo);
 
-        switch(currentLineCount)
-        {
-            //Time
-            case 1 : {
-                std::stringstream ss;
-                ss << line;
-
-                levelInfo.time = atoi(ss.str().c_str());
-            } break;
-
-            //Cars
-            case 2 :
-            case 3 :
-            case 4 :
-            case 5 :
-            case 6 : {
-                auto index = (currentLineCount - 2);
-                fillEnemyInfo(levelInfo.carsInfo, index, line);
-            }; break;
-
-            //Trees
-            case  7 :
-            case  8 :
-            case  9 :
-            case 10 :
-            case 11 : {
-                auto index = (currentLineCount - 7);
-                fillEnemyInfo(levelInfo.treesInfo, index, line);
-            }
-
-            //Trees
-            case 12 :
-            case 13 :
-            case 14 :
-            case 15 :
-            case 16 : {
-                auto index = (currentLineCount - 12);
-                fillEnemyInfo(levelInfo.turtlesInfo, index, line);
-            }
-        }
+        ++lineIndex;
     }
 
     return levelInfo;
