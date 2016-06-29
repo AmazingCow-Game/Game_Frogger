@@ -237,7 +237,7 @@ void Player::setFrameRect(int index)
                        : m_dyingFramesRect;
 
     COREGAME_ASSERT_ARGS(
-        index >= 0 && index < framesVec.size(),
+        index >= 0 && index < (int)framesVec.size(),
         "Player::setFrameRect - Trying to set a invalid frame (%d) - State: (%d)",
         index, getState()
     );
