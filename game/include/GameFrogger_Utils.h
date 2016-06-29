@@ -9,7 +9,11 @@
 //Lore
 #include "Lore.h"
 
-#define FROGGER_DLOG(_fmt_, ...) \
-    COREGAME_DLOG(CoreGame::Log::Type::Debug1, _fmt_, ##__VA_ARGS__)
+#ifdef FROGGER_DEBUG
+    #define FROGGER_DLOG(_fmt_, ...)
+        COREGAME_DLOG(CoreGame::Log::Type::Debug1, _fmt_, ##__VA_ARGS__)
+#else
+    #define FROGGER_DLOG(_fmt_, ...) {}
+#endif
 
 #endif // __Game_Frogger_include_GameFrogger_Utils_h__ //
