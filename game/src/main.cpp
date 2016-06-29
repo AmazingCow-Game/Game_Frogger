@@ -25,7 +25,11 @@ int main()
                            SDL_WINDOW_SHOWN,                //SDL Flags
                            SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-    assetsMgr->initialize("./assets");
+    std::vector<std::string> paths = {
+        "./assets",
+        "/usr/local/share/amazingcow_game_frogger/assets"
+    };
+    assetsMgr->initialize(paths);
 
     //Sound and Input.
     soundMgr->initialize(Lore::SoundManager::kDefaultFrequency,
