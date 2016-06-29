@@ -1,4 +1,3 @@
-
 //Game_Frogger
 #include "GameFrogger_Utils.h"
 #include "SceneMenu.h"
@@ -10,7 +9,7 @@
 //Usings
 USING_NS_GAME_FROGGER;
 
-int main(int argc, char* args[])
+int main()
 {
     auto windowMgr = Lore::WindowManager::instance();
     auto assetsMgr = Lore::AssetsManager::instance();
