@@ -124,13 +124,9 @@ void BonusEnemy::onAppearTimerTick()
     // 2 - None;
     int number = Lore::GameManager::instance()->getRandomNumber(0, 2);
 
-    BonusEnemy::Type type;
-    switch(number)
-    {
-        case 0: type = BonusEnemy::Type::Alligator; break;
-        case 1: type = BonusEnemy::Type::Fly;       break;
-        case 2: type = BonusEnemy::Type::None;      break;
-    }
+    auto type = (number == 0) ? BonusEnemy::Type::Alligator :
+                (number == 1) ? BonusEnemy::Type::Fly
+                              : BonusEnemy::Type::None;
     setType(type);
 
     m_appearTimer.stop();
