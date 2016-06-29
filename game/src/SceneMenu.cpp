@@ -8,17 +8,20 @@
 //Usings
 USING_NS_GAME_FROGGER
 
-//COWTODO: Remove the magic numbers.
-//COWTODO: Add comments.
-
+////////////////////////////////////////////////////////////////////////////////
+// Constants                                                                  //
+////////////////////////////////////////////////////////////////////////////////
+#define kBackgroundColor Lore::Color(0, 0, 72) //Same as water
+constexpr int kSelectionIndex_Play    = 0;
+constexpr int kSelectionIndex_Credits = 1;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CTOR / DTOR                                                                //
 ////////////////////////////////////////////////////////////////////////////////
 SceneMenu::SceneMenu()
 {
-    Lore::WindowManager::instance()->setClearColor(Lore::Color(0, 0, 72));
-    m_selectionIndex = 0;
+    Lore::WindowManager::instance()->setClearColor(kBackgroundColor);
+    m_selectionIndex = kSelectionIndex_Play;
 
     initSprites();
     initTexts  ();
@@ -38,7 +41,7 @@ void SceneMenu::update(float dt)
     {
         auto gameMgr = Lore::GameManager::instance();
 
-        if(m_selectionIndex == 0)
+        if(m_selectionIndex == kSelectionIndex_Play)
             gameMgr->changeScene(Lore::make_unique<SceneGame>());
         else
             gameMgr->changeScene(Lore::make_unique<SceneCredits>());
@@ -59,12 +62,15 @@ void SceneMenu::update(float dt)
 
 void SceneMenu::draw()
 {
+    //Logo
     m_logo.draw();
 
+    //Texts
     m_playText.draw      ();
     m_creditsText.draw   ();
     m_amazingcowText.draw();
 
+    //Frog
     m_selectionFrog.draw();
 }
 
@@ -125,7 +131,8 @@ void SceneMenu::initPlayer()
 
     m_selectionFrog.setMovementBounds(
         Lore::Vector2::Zero(),
-        Lore::Vector2(10000, 10000)
+        Lore::Vector2(10000, 10000) //Arbitrary long values,
+                                    //just to enable the frog to jump
     );
 
     m_selectionFrog.setInitialPosition(finalPos);
