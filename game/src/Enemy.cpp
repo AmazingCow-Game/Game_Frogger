@@ -13,9 +13,21 @@ Enemy::Enemy() :
     m_maxX(0),
     m_realPosition    (Lore::Vector2::Zero()),
     m_wrappingPosition(Lore::Vector2::Zero()),
-    m_isWrapping(false)
+    m_isWrapping(false),
+    m_realColor    (Lore::Color::White()),
+    m_wrappingColor(Lore::Color::White())
 {
     //Empty...
+
+    COREGAME_ONLY_IN_DEBUG({
+        m_realColor = Lore::Color(
+            Lore::GameManager::instance()->getRandomNumber(0, 255),
+            Lore::GameManager::instance()->getRandomNumber(0, 255),
+            Lore::GameManager::instance()->getRandomNumber(0, 255)
+        );
+
+        m_wrappingColor = Lore::Color(255, 0, 255);
+    });
 }
 
 Enemy::~Enemy()
@@ -84,7 +96,11 @@ void Enemy::draw()
     //Draw the normal sprite.
     auto sprite = getSprite();
     sprite.setPosition(getRealPosition());
-    sprite.setColor(Lore::Color::White());
+
+    COREGAME_ONLY_IN_DEBUG({
+        sprite.setColor(m_realColor);
+    })
+
     sprite.draw();
 
     if(!isWrapping())
@@ -92,7 +108,9 @@ void Enemy::draw()
 
     //Draw the wrapping sprite.
     sprite.setPosition(getWrappingPosition());
-    sprite.setColor(Lore::Color(255, 0, 255));
+    COREGAME_ONLY_IN_DEBUG({
+        sprite.setColor(m_wrappingColor);
+    })
     sprite.draw();
 }
 

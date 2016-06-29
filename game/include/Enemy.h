@@ -5,6 +5,7 @@
 #include "GameFrogger_Utils.h"
 #include "GameObject.h"
 
+
 NS_GAME_FROGGER_BEGIN
 
 class Enemy : public GameObject
@@ -61,6 +62,9 @@ private:
     Lore::Vector2 m_wrappingPosition;
 
     bool m_isWrapping;
+
+    Lore::Color m_realColor;
+    Lore::Color m_wrappingColor;
 };
 
 NS_GAME_FROGGER_END
